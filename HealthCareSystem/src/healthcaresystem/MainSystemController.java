@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import javafx.util.Duration;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -22,40 +23,24 @@ import javafx.stage.Stage;
 
 public class MainSystemController implements Initializable {
     
-    private int minute;
-    private int second;
-    private int hour;
-    private String final_minute;
-    private String final_second;
+    private String pattern = "hh:mm:ss a";
     
     @FXML
     private Label time;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {        
-            second = LocalDateTime.now().getSecond();
-            minute = LocalDateTime.now().getMinute();
-            hour = LocalDateTime.now().getHour();
-            if(second < 10){
-                final_second = "0" + String.valueOf(second);
-            }
-            else{
-                final_second = String.valueOf(second);
-            }
-            if(minute < 10){
-                final_minute = "0" + String.valueOf(minute);
-            }
-            else{
-                final_minute = String.valueOf(minute);
-            }
-            
-            time.setText(hour + ":" + final_minute + ":" + final_second);
+        
+        
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+            LocalDateTime nowTime = LocalDateTime.now();
+            time.setText(nowTime.format(DateTimeFormatter.ofPattern(pattern)));
         }),
              new KeyFrame(Duration.seconds(1))
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+        System.out.println(LocalDateTime.now());
     }    
     
     
