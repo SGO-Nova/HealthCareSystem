@@ -30,7 +30,7 @@ public class LoginController implements Initializable {
     public void loginButtonClick(ActionEvent event) throws Exception{
         String id = loginID.getText();
         System.out.println("");
-        System.out.println(id + " has loged in.");
+        System.out.print(id + " has loged in at ");
         
         Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
         Scene mainSystemScene = new Scene(mainSystemParent);
