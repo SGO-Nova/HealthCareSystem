@@ -2,13 +2,13 @@
 <jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="HealthCareSystem.jnlp">
   <information>
     <title>HealthCareSystem</title>
-    <vendor>ryanb</vendor>
+    <vendor>Powerful And Wonderful Group</vendor>
     <description>null</description>
     <offline-allowed/>
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="HealthCareSystem.jar" size="10494" download="eager" />
+    <jar href="HealthCareSystem.jar" size="15265" download="eager" />
   </resources>
   <jfx:javafx-desc  width="800" height="600" main-class="healthcaresystem.HealthCareSystem"  name="HealthCareSystem" />
   <update check="always"/>

@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 public class MainSystemController implements Initializable {
     
-    private String pattern = "hh:mm:ss a";
+    private String pattern = "ccc | yyyy-MM-dd | hh:mm:ss a";
     
     @FXML
     private Label time;
@@ -41,7 +41,6 @@ public class MainSystemController implements Initializable {
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
-        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)));
     }    
     
     
@@ -71,7 +70,34 @@ public class MainSystemController implements Initializable {
         } else {
             System.out.println("Cancled Logout sequence");
         }
-        
-        
     }
+    
+    public void viewReportClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("ViewReports.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
+    
+    public void makeAppointmentClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("CreateAppointment.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
+    
 }

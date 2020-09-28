@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.ClosePath?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.LineTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="healthcaresystem.ViewReportsController">
+   <children>
+      <BorderPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0">
+         <bottom>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="1921.0" style="-fx-background-color: #cfcfcf;" BorderPane.alignment="CENTER">
+               <children>
+                  <Text layoutX="1734.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powerful And Wonderful Group ©" wrappingWidth="185.4700412750244" />
+               </children>
+            </AnchorPane>
+         </bottom>
+         <top>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="1921.0" style="-fx-background-color: cfcfcf;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#backClick" prefHeight="75.0" prefWidth="75.0" style="-fx-background-radius: 0; -fx-background-color: #ee0000;" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Label fx:id="time" alignment="TOP_RIGHT" layoutX="918.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="75.0" prefWidth="1000.0" text="Time" textAlignment="RIGHT">
+                     <font>
+                        <Font name="SansSerif" size="55.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="time1" layoutX="85.0" prefHeight="75.0" prefWidth="847.0" text="Medical Care Group">
+                     <font>
+                        <Font name="SansSerif" size="55.0" />
+                     </font>
+                  </Label>
+                  <Line endX="33.66667556762695" endY="-25.833322525024414" layoutX="23.0" layoutY="38.0" startX="-7.8333330154418945" startY="-3.814697265625E-6" />
+                  <Line endX="-8.166667938232422" endY="35.83333206176758" layoutX="65.0" layoutY="26.0" startX="-48.4999885559082" startY="11.999996185302734" />
+                  <Path disable="true" fill="BLACK" layoutX="11.0" layoutY="37.0" opacity="0.73" stroke="BLACK" strokeType="INSIDE">
+                     <elements>
+                        <MoveTo />
+                        <LineTo x="50.0" y="-30.0" />
+                        <LineTo x="50.0" y="30.0" />
+                        <ClosePath />
+                     </elements>
+                  </Path>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text layoutX="73.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="49.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="148.0" layoutY="124.0" prefHeight="51.0" prefWidth="603.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="148.0" layoutY="175.0" prefHeight="51.0" prefWidth="603.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Find">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="992.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="1068.0" layoutY="115.0" prefHeight="51.0" prefWidth="316.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="1068.0" layoutY="166.0" prefHeight="51.0" prefWidth="315.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Text layoutX="77.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="149.0" layoutY="247.0" prefHeight="51.0" prefWidth="603.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Text layoutX="898.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Social Security">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="1068.0" layoutY="247.0" prefHeight="51.0" prefWidth="313.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Text layoutX="26.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="148.0" layoutY="319.0" prefHeight="51.0" prefWidth="603.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="1245.0" layoutY="317.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Update">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cecece" height="895.0" layoutX="1450.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="423.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cecece" height="11.0" layoutX="26.0" layoutY="418.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1357.0" />
+                  <Text layoutX="62.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="148.0" layoutY="466.0" prefHeight="51.0" prefWidth="342.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Text layoutX="79.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="148.0" layoutY="546.0" prefHeight="51.0" prefWidth="342.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox layoutX="620.0" layoutY="546.0" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
+                  <Text layoutX="540.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="67.0" layoutY="695.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextArea layoutX="149.0" layoutY="668.0" prefHeight="193.0" prefWidth="1239.0" />
+                  <Button layoutX="1250.0" layoutY="885.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Create">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="148.0" layoutY="885.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Cancel">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="1245.0" layoutY="42.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Generate">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Button>
+                  <Text layoutX="1461.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REMEMBER to click 'find' after typing in patients name to ensure no duplicates are formed. " wrappingWidth="353.9791259765625">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1465.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure all information put in is correct and up to date." wrappingWidth="344.6458740234375">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1471.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is a fellony to give out patients information without their consent. Do not talk about patients to other people. Only talk to patients about patients." wrappingWidth="358.6458740234375">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1465.0" layoutY="585.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure the correct doctor, date, and time are set when creating the appointment. Read back all the information about the appointment back to the patient for better communication." wrappingWidth="369.9791259765625">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1466.0" layoutY="839.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you have any problems or questions, call the IT dept. at (806) 420-6969." wrappingWidth="369.9791259765625">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

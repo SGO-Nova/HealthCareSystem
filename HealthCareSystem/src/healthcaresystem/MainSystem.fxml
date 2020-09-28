@@ -23,7 +23,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button layoutX="131.5" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #43BB36;">
+                        <Button layoutX="131.5" layoutY="72.0" mnemonicParsing="false" onAction="#makeAppointmentClick" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #43BB36;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -191,7 +191,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button layoutX="92.0" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #A91DD2;">
+                        <Button fx:id="viewReport" layoutX="92.0" layoutY="72.0" mnemonicParsing="false" onAction="#viewReportClick" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #A91DD2;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -237,7 +237,7 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <Label fx:id="time" alignment="CENTER_RIGHT" layoutX="1222.0" prefHeight="75.0" prefWidth="497.0" text="Time" textAlignment="RIGHT">
+            <Label fx:id="time" alignment="TOP_RIGHT" layoutX="634.0" prefHeight="75.0" prefWidth="1085.0" text="Time" textAlignment="RIGHT">
                <font>
                   <Font name="SansSerif" size="55.0" />
                </font>
