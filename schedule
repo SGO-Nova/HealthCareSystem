@@ -19,7 +19,7 @@ public class schedule {
 		}
 	}
 	
-	public static void updateSchedule(int time)
+	public void updateSchedule(int time)
 	{
 		for(int i = 0; i < 8; i++)
 		{
@@ -30,7 +30,7 @@ public class schedule {
 		}
 	}
 	
-	public static boolean checkSchedule(int time)
+	public boolean checkSchedule(int time)
 	{
 		for(int i = 0; i< 8; i++)
 		{
@@ -43,5 +43,15 @@ public class schedule {
 			}
 		}
 		return true;//otherwise returns true, since they are free at that time
+	}
+	public void printSchedule()
+	{
+		for(int i = 0; i<8; i++)
+		{
+			for(int j = 0; j<2;j++)
+			{
+				//print, but in JavaFX
+			}
+		}
 	}
 }
