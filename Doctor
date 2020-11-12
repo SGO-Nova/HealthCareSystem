@@ -1,8 +1,20 @@
 public class Doctor extends Actor{
 	String name;
-	schedule schedule = new schedule();//change this?? :)
+	schedule schedule;
+	//basic constructor, defaults to a test case
 	public Doctor()
 	{
-		name = "";
+		this.name = "Test Doctor";
+		this.schedule = new schedule();
+		this.clearance = 3;
+		this.password = "test";
 	}
+	public Doctor(String name, schedule schedule, String password)
+	{
+		this.clearance = 3;
+		this.name = name;
+		this.schedule = new schedule();
+		this.password = password;
+	}
+	
 }
