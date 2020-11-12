@@ -39,12 +39,41 @@ public class appointment {
 						}
 					}
 					appSet = 1;
+					//print something about appointment being set.
 				}
 			}
 		}
 		if(appSet != 1)
 		{
 			//print something about appointment not being set.
+		}
+	}
+	public static void cancelApp(ArrayList<patient> patient)
+	{
+		//staff enters patient name
+		String name = "";//edit this so that it can take an input
+		for(patient pat : patient)
+		{
+			if(name == pat.name)
+			{
+				if(pat.appointment != null)
+				{
+					//confirm you want to delete appointment
+					boolean confirm = true;
+					if(confirm)
+					{
+						int time = pat.appointment.time;
+						pat.appointment.doctor.schedule.cancelApp(time);
+						pat.appointment = null;
+						//print something about appointment being cancelled. 
+					}
+				}
+				else
+				{
+					//patient didn't have an appointment
+					//print something about no appointment
+				}
+			}
 		}
 	}
 }
