@@ -1,0 +1,13 @@
+public class appointment {
+	String date;
+	Doctor doctor = new Doctor();//Change this, using it to remember i need it
+	public appointment()
+	{
+		
+	}
+	public appointment(Doctor doctor, String date)
+	{
+		this.date = "";
+		this.doctor = null;
+	}
+}
