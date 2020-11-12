@@ -1,8 +1,5 @@
-import java.util.ArrayList;
 public class schedule {
-	ArrayList<ArrayList<String>> time = new ArrayList<ArrayList<String>>();
-	ArrayList<String> timer = new ArrayList<String>();
-	int[][] sched = new int[2][8];
+	static int[][] sched = new int[2][8];
 	
 	public schedule()
 	{
@@ -10,7 +7,7 @@ public class schedule {
 		{
 			for(int j =0; j < 2; j++)
 			{
-				if(j==1)
+				if(j==0)
 				{
 					sched[i][j] = i+9;//sets time
 				}
@@ -21,8 +18,30 @@ public class schedule {
 			}
 		}
 	}
-	public schedule(ArrayList<String> timer)
+	
+	public static void updateSchedule(int time)
 	{
-		
+		for(int i = 0; i < 8; i++)
+		{
+			if(time == sched[i][0])
+			{
+				sched[i][1] = 1;
+			}
+		}
+	}
+	
+	public static boolean checkSchedule(int time)
+	{
+		for(int i = 0; i< 8; i++)
+		{
+			if(time == sched[i][0])
+			{
+				if(sched[i][1] == 1)
+				{
+					return false;//returns false if they are not free at that time
+				}
+			}
+		}
+		return true;//otherwise returns true, since they are free at that time
 	}
 }
