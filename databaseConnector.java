@@ -2,10 +2,6 @@ import java.sql.*;
 public class databaseConnector{
 	public static void main(String[] args)
 		{
-		/*root username: root
-		//root password: root
-		//lol :)
-		*/
 
 		String url = "jdbc:mysql://153.33.75.65:3306/greenhouse";
 		String username = "root";
