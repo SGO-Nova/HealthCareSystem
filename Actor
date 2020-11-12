@@ -1,0 +1,10 @@
+//parent class for Staff, Doctor, CEO, Patient, etc.
+public class Actor {
+	String name;
+	//empty constructor lol
+	public Actor()
+	{
+		
+	}
+	
+}

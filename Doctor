@@ -1,0 +1,8 @@
+public class Doctor extends Actor{
+	String name;
+	schedule schedule = new schedule();//change this?? :)
+	public Doctor()
+	{
+		name = "";
+	}
+}
