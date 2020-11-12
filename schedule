@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+public class schedule {
+	ArrayList<ArrayList<String>> time = new ArrayList<ArrayList<String>>();
+	ArrayList<String> timer = new ArrayList<String>();
+	int[][] sched = new int[2][8];
+	
+	public schedule()
+	{
+		for(int i = 0; i < 8; i++)
+		{
+			for(int j =0; j < 2; j++)
+			{
+				if(j==1)
+				{
+					sched[i][j] = i+9;//sets time
+				}
+				else
+				{
+					sched[i][j] = 0;//sets status if open or not.
+				}
+			}
+		}
+	}
+	public schedule(ArrayList<String> timer)
+	{
+		
+	}
+}
