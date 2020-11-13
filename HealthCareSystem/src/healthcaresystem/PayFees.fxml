@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.ClosePath?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.LineTo?>
+<?import javafx.scene.shape.MoveTo?>
+<?import javafx.scene.shape.Path?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="healthcaresystem.PayFeesController">
+    <children>
+      <BorderPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0">
+         <top>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="1920.0" style="-fx-background-color: cfcfcf;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="backButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#backClick" prefHeight="75.0" prefWidth="75.0" style="-fx-background-radius: 0; -fx-background-color: #ee0000;" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </Button>
+                  <Label fx:id="time" alignment="TOP_RIGHT" layoutX="918.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="75.0" prefWidth="1000.0" text="Time" textAlignment="RIGHT">
+                     <font>
+                        <Font name="SansSerif" size="55.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="600.0" prefHeight="75.0" prefWidth="475.0" style="-fx-background-color: #AAAAAA;" text="Pay Fees">
+                     <font>
+                        <Font name="SansSerif" size="48.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="time1" layoutX="85.0" prefHeight="75.0" prefWidth="847.0" text="Medical Care Group">
+                     <font>
+                        <Font name="SansSerif" size="55.0" />
+                     </font>
+                  </Label>
+                  <Line endX="33.66667556762695" endY="-25.833322525024414" layoutX="23.0" layoutY="38.0" startX="-7.8333330154418945" startY="-3.814697265625E-6" />
+                  <Line endX="-8.166667938232422" endY="35.83333206176758" layoutX="65.0" layoutY="26.0" startX="-48.4999885559082" startY="11.999996185302734" />
+                  <Path disable="true" fill="BLACK" layoutX="11.0" layoutY="37.0" opacity="0.73" stroke="BLACK" strokeType="INSIDE">
+                     <elements>
+                        <MoveTo />
+                        <LineTo x="50.0" y="-30.0" />
+                        <LineTo x="50.0" y="30.0" />
+                        <ClosePath />
+                     </elements>
+                  </Path>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text layoutX="73.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Find">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="1250.0" layoutY="835.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Pay">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cecece" height="875.0" layoutX="1470.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="423.0" />
+                  <Text layoutX="1486.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REMEMBER to click 'find' after typing in patients name OR ID number to find the patient's information." textAlignment="JUSTIFY" wrappingWidth="403.3123779296875">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1486.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It is a felony to give out patients information without their consent. Do not talk about patients to other people. Only talk to patients about patients." textAlignment="JUSTIFY" wrappingWidth="391.3123779296875">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1481.0" layoutY="816.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you have any problems or questions, call the IT department at (806) 420-6969." textAlignment="JUSTIFY" wrappingWidth="401.9791259765625">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Text>
+                  <AnchorPane layoutY="905.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="1920.0" style="-fx-background-color: #cfcfcf;">
+                     <children>
+                        <Text layoutX="1734.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powerful And Wonderful Group ©" wrappingWidth="185.4700412750244" />
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="1250.0" layoutY="43.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Find">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <ComboBox layoutX="266.0" layoutY="157.0" prefHeight="48.0" prefWidth="236.0" promptText="Type" />
+                  <Text layoutX="73.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Type">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="1026.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <Label fx:id="Amount" layoutX="1124.0" layoutY="165.0" prefHeight="33.0" prefWidth="226.0" text="Amount">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </Label>
+                  <Text layoutX="1103.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <AnchorPane layoutX="73.0" layoutY="262.0" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #AAAAAA;">
+                     <children>
+                        <AnchorPane layoutX="25.0" layoutY="25.0" prefHeight="550.0" prefWidth="650.0" style="-fx-background-color: #CCCCCC;">
+                           <children>
+                              <Text layoutX="55.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Number">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </Text>
+                              <TextField layoutX="237.0" layoutY="111.0" prefHeight="51.0" prefWidth="336.0">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <Text layoutX="93.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exp. Date">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </Text>
+                              <TextField layoutX="237.0" layoutY="180.0" prefHeight="51.0" prefWidth="56.0">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <TextField layoutX="327.0" layoutY="180.0" prefHeight="51.0" prefWidth="56.0">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <Text layoutX="428.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CVV">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </Text>
+                              <TextField layoutX="488.0" layoutY="180.0" prefHeight="51.0" prefWidth="85.0">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <Text layoutX="44.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name on Card">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </Text>
+                              <TextField layoutX="238.0" layoutY="250.0" prefHeight="51.0" prefWidth="336.0">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <Text layoutX="108.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zip Code">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </Text>
+                              <TextField layoutX="238.0" layoutY="321.0" prefHeight="51.0" prefWidth="183.0">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </TextField>
+                              <Line endX="295.6666564941406" endY="395.3333435058594" layoutX="4.0" layoutY="-170.0" startX="313.6666564941406" startY="354.0000305175781" />
+                              <Text layoutX="197.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card Information Panel">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                              </Text>
+                              <Button layoutX="335.0" layoutY="482.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="305.0" text="Check Card Information">
+                                 <font>
+                                    <Font name="SansSerif" size="25.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

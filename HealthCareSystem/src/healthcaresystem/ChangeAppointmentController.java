@@ -29,7 +29,7 @@ import javafx.util.Duration;
  *
  * @author ryanb
  */
-public class CreateAppointmentController implements Initializable {
+public class ChangeAppointmentController implements Initializable {
 
     @FXML
     private Label time;
@@ -55,6 +55,6 @@ public class CreateAppointmentController implements Initializable {
 
         window.setScene(mainSystemScene);
         window.show();
-    }
+    }   
     
 }

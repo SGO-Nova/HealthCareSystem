@@ -100,4 +100,87 @@ public class MainSystemController implements Initializable {
         window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
     }
     
+    public void changeAppointmentClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("ChangeAppointment.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
+    
+    public void cancelAppointmentClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("CancelAppointment.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
+    
+    public void updateMeasurementsClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("UpdateMeasurements.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
+    
+    public void giveTreatmentClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("giveTreatment.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
+    
+    public void payFeesClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("PayFees.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
+    
+    public void checkInPatientmentClick(ActionEvent event) throws IOException{
+        Parent mainSystemParent = FXMLLoader.load(getClass().getResource("CheckInPatient.fxml"));
+        Scene mainSystemScene = new Scene(mainSystemParent);
+
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+        window.setScene(mainSystemScene);
+        window.show();
+        
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+        window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+    }
 }

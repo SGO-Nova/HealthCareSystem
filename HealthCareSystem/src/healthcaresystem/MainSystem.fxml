@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="healthcaresystem.MainSystemController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1922.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="healthcaresystem.MainSystemController">
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -34,7 +34,7 @@
                               <InnerShadow color="#5d5d5d" height="80.0" radius="39.5" width="80.0" />
                            </effect>
                         </Button>
-                        <Button layoutX="518.0" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #BEC645;">
+                        <Button layoutX="518.0" layoutY="72.0" mnemonicParsing="false" onAction="#changeAppointmentClick" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #BEC645;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -48,7 +48,7 @@
                               <InnerShadow color="#5c5c5c" height="80.0" radius="39.5" width="80.0" />
                            </effect>
                         </Button>
-                        <Button layoutX="905.0" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: D23636;">
+                        <Button layoutX="905.0" layoutY="72.0" mnemonicParsing="false" onAction="#cancelAppointmentClick" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: D23636;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -84,7 +84,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button layoutX="94.0" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="360.0" style="-fx-background-radius: 100; -fx-background-color: #06A100;">
+                        <Button layoutX="94.0" layoutY="72.0" mnemonicParsing="false" onAction="#checkInPatientmentClick" prefHeight="154.0" prefWidth="360.0" style="-fx-background-radius: 100; -fx-background-color: #06A100;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -113,7 +113,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button layoutX="92.0" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #047000;">
+                        <Button layoutX="92.0" layoutY="72.0" mnemonicParsing="false" onAction="#payFeesClick" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #047000;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -139,7 +139,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button layoutX="92.0" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #1DD8BD;">
+                        <Button layoutX="92.0" layoutY="72.0" mnemonicParsing="false" onAction="#updateMeasurementsClick" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #1DD8BD;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -165,7 +165,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
                      <children>
-                        <Button layoutX="92.0" layoutY="72.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #2C00FF #2C00FF;">
+                        <Button layoutX="92.0" layoutY="72.0" mnemonicParsing="false" onAction="#giveTreatmentClick" prefHeight="154.0" prefWidth="255.0" style="-fx-background-radius: 100; -fx-background-color: #2C00FF #2C00FF;">
                            <font>
                               <Font name="SansSerif" size="32.0" />
                            </font>
@@ -226,7 +226,7 @@
    <top>
       <AnchorPane prefHeight="75.0" prefWidth="1920.0" style="-fx-background-color: cfcfcf;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="systemLogOutButton" layoutX="1720.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#LogOutClick" prefHeight="75.0" prefWidth="200.0" style="-fx-background-radius: 0; -fx-background-color: #ee0000;" text="Log Out" textFill="WHITE">
+            <Button fx:id="systemLogOutButton" layoutX="1722.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#LogOutClick" prefHeight="75.0" prefWidth="200.0" style="-fx-background-radius: 0; -fx-background-color: #ee0000;" text="Log Out" textFill="WHITE">
                <font>
                   <Font name="SansSerif Bold" size="20.0" />
                </font>
