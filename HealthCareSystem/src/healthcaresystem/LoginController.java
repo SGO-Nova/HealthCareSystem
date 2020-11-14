@@ -1,7 +1,6 @@
 package healthcaresystem;
 
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import Backend.*;
 
 public class LoginController implements Initializable {
 
@@ -30,7 +30,8 @@ public class LoginController implements Initializable {
     public void loginButtonClick(ActionEvent event) throws Exception{
         String id = loginID.getText();
         System.out.println("");
-        System.out.print(id + " has loged in at ");
+        System.out.print(id + " has loged in");
+        System.out.println("");
         
         Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
         Scene mainSystemScene = new Scene(mainSystemParent);

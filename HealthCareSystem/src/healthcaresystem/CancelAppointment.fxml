@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="healthcaresystem.CancelAppointmentController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="healthcaresystem.CancelAppointmentController">
     <children>
       <BorderPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0">
          <bottom>
@@ -83,22 +83,22 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
+                  <TextField fx:id="fName" layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
+                  <TextField fx:id="lName" layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField disable="true" layoutX="148.0" layoutY="124.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pAddress1" disable="true" layoutX="148.0" layoutY="124.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField disable="true" layoutX="148.0" layoutY="175.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pAddress2" disable="true" layoutX="148.0" layoutY="175.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -108,7 +108,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                  <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -126,12 +126,12 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField disable="true" layoutX="1068.0" layoutY="115.0" prefHeight="51.0" prefWidth="316.0">
+                  <TextField fx:id="pPhone1" disable="true" layoutX="1068.0" layoutY="115.0" prefHeight="51.0" prefWidth="316.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField disable="true" layoutX="1068.0" layoutY="166.0" prefHeight="51.0" prefWidth="315.0">
+                  <TextField fx:id="pPhone2" disable="true" layoutX="1068.0" layoutY="166.0" prefHeight="51.0" prefWidth="315.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -141,7 +141,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField disable="true" layoutX="149.0" layoutY="247.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pEmail" disable="true" layoutX="149.0" layoutY="247.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -151,7 +151,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField disable="true" layoutX="1068.0" layoutY="247.0" prefHeight="51.0" prefWidth="313.0">
+                  <TextField fx:id="pSSN" disable="true" layoutX="1068.0" layoutY="247.0" prefHeight="51.0" prefWidth="313.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -161,7 +161,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField disable="true" layoutX="148.0" layoutY="319.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pInsurance" disable="true" layoutX="148.0" layoutY="319.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -178,12 +178,12 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField disable="true" layoutX="148.0" layoutY="546.0" prefHeight="51.0" prefWidth="342.0">
+                  <TextField fx:id="aDate" disable="true" layoutX="148.0" layoutY="546.0" prefHeight="51.0" prefWidth="342.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <ComboBox disable="true" layoutX="620.0" layoutY="546.0" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
+                  <ComboBox fx:id="aTime" disable="true" layoutX="620.0" layoutY="546.0" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
                   <Text layoutX="540.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -202,7 +202,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <TextArea disable="true" layoutX="148.0" layoutY="628.0" prefHeight="193.0" prefWidth="1239.0" />
+                  <TextArea fx:id="aNotes" disable="true" layoutX="148.0" layoutY="628.0" prefHeight="193.0" prefWidth="1239.0" />
                   <Text layoutX="1465.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REMEMBER to click 'find' after typing in patients name OR ID number to find the patient's appointment information. " textAlignment="JUSTIFY" wrappingWidth="403.3123779296875">
                      <font>
                         <Font name="SansSerif" size="24.0" />

@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="healthcaresystem.UpdateMeasurementsController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="healthcaresystem.UpdateMeasurementsController">
     <children>
       <BorderPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0">
          <top>
@@ -70,12 +70,12 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
+                  <TextField fx:id="fName" layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
+                  <TextField fx:id="lName" layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -85,7 +85,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                  <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -112,7 +112,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextArea layoutX="147.0" layoutY="366.0" prefHeight="193.0" prefWidth="1239.0">
+                  <TextArea fx:id="aReason" layoutX="147.0" layoutY="366.0" prefHeight="193.0" prefWidth="1239.0">
                      <font>
                         <Font name="SansSerif" size="24.0" />
                      </font></TextArea>
@@ -159,7 +159,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="146.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
+                  <TextField fx:id="pHeight1" layoutX="146.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -169,7 +169,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="246.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
+                  <TextField fx:id="pHeight2" layoutX="246.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -184,7 +184,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="485.0" layoutY="209.0" prefHeight="51.0" prefWidth="90.0">
+                  <TextField fx:id="pWeight" layoutX="485.0" layoutY="209.0" prefHeight="51.0" prefWidth="90.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -199,12 +199,12 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="864.0" layoutY="210.0" prefHeight="51.0" prefWidth="90.0">
+                  <TextField fx:id="pBP1" layoutX="864.0" layoutY="210.0" prefHeight="51.0" prefWidth="90.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="864.0" layoutY="271.0" prefHeight="51.0" prefWidth="90.0">
+                  <TextField fx:id="pBP2" layoutX="864.0" layoutY="271.0" prefHeight="51.0" prefWidth="90.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -225,7 +225,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextArea disable="true" layoutX="147.0" layoutY="613.0" prefHeight="189.0" prefWidth="1239.0">
+                  <TextArea fx:id="aTreatment" disable="true" layoutX="147.0" layoutY="613.0" prefHeight="189.0" prefWidth="1239.0">
                      <font>
                         <Font name="SansSerif" size="24.0" />
                      </font>

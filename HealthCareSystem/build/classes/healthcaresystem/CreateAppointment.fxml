@@ -76,22 +76,22 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
+                  <TextField fx:id="fName" layoutX="148.0" layoutY="43.0" prefHeight="51.0" prefWidth="236.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
+                  <TextField fx:id="lName" layoutX="401.0" layoutY="43.0" prefHeight="51.0" prefWidth="350.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="148.0" layoutY="124.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pAddress1" layoutX="148.0" layoutY="124.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="148.0" layoutY="175.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pAddress2" layoutX="148.0" layoutY="175.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -101,7 +101,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                  <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -119,12 +119,12 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="1068.0" layoutY="115.0" prefHeight="51.0" prefWidth="316.0">
+                  <TextField fx:id="pPhone1" layoutX="1068.0" layoutY="115.0" prefHeight="51.0" prefWidth="316.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField layoutX="1068.0" layoutY="166.0" prefHeight="51.0" prefWidth="315.0">
+                  <TextField fx:id="pPhone2" layoutX="1068.0" layoutY="166.0" prefHeight="51.0" prefWidth="315.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -134,7 +134,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="149.0" layoutY="247.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pEmail" layoutX="149.0" layoutY="247.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -144,7 +144,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="1068.0" layoutY="247.0" prefHeight="51.0" prefWidth="313.0">
+                  <TextField fx:id="pSSN" layoutX="1068.0" layoutY="247.0" prefHeight="51.0" prefWidth="313.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -154,7 +154,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="148.0" layoutY="319.0" prefHeight="51.0" prefWidth="603.0">
+                  <TextField fx:id="pInsurance" layoutX="148.0" layoutY="319.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -179,12 +179,12 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="148.0" layoutY="546.0" prefHeight="51.0" prefWidth="342.0">
+                  <TextField fx:id="aDate" layoutX="148.0" layoutY="546.0" prefHeight="51.0" prefWidth="342.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <ComboBox layoutX="620.0" layoutY="546.0" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
+                  <ComboBox fx:id="aTime" layoutX="620.0" layoutY="546.0" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
                   <Text layoutX="540.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -195,7 +195,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextArea layoutX="149.0" layoutY="630.0" prefHeight="193.0" prefWidth="1239.0" />
+                  <TextArea fx:id="aNotes" layoutX="149.0" layoutY="630.0" prefHeight="193.0" prefWidth="1239.0" />
                   <Button layoutX="1250.0" layoutY="835.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Create">
                      <font>
                         <Font name="SansSerif" size="25.0" />
