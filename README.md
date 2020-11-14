@@ -16,4 +16,5 @@ The different tasks can include:
 
 Within the root folder of the project, there is the description of the project and the requirements. 
 
-This project was made in Java using JavaFX and FXML for the design, the data storage was used with an SQL database.
+This project was made in Java using JavaFX and FXML for the design, ~~the data storage was used with an SQL database.~~ the data will be stored runtime in data structures like ArrayLists and stored longterm in object files that can be read each morning or night after report generation.
+
