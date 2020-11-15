@@ -1,8 +1,8 @@
-
 public class patient extends Actor {
 	
 	appointment appointment;
 	patientChart patientChart;
+	treatmentRecord treatmentRecord;
 	String birthday;
 	//empty constructor with defaults for a test case
 	public patient()
@@ -12,6 +12,7 @@ public class patient extends Actor {
 		this.clearance = 0;
 		this.appointment = null;
 		this.patientChart = null;
+		this.treatmentRecord = null;
 		this.birthday = "";
 	}
 	//real constructor 
@@ -23,5 +24,6 @@ public class patient extends Actor {
 		this.clearance = 0;
 		this.birthday = birthday;
 		this.patientChart = null;
+		this.treatmentRecord = null;
 	}
 }
