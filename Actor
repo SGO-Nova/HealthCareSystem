@@ -9,6 +9,7 @@ public class Actor {
 	 * clearance = 2, nurse
 	 * clearance = 3, doctor
 	 * clearance = 4, CEO
+	 * clearance = 5, timer
 	 */
 	//empty constructor lol
 	public Actor()
@@ -16,9 +17,10 @@ public class Actor {
 		
 	}
 	
-	public Actor(String name, int clearance)
+	public Actor(String name, int clearance,String password)
 	{
 		this.name = name;
 		this.clearance = clearance;
+		this.password = password;
 	}
 }
