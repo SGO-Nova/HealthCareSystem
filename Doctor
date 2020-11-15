@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public class Doctor extends Actor{
 	String name;
 	schedule schedule;
 	int earned;
+	ArrayList<patientChart> patientChart;
 	//basic constructor, defaults to a test case
 	public Doctor()
 	{
@@ -24,4 +27,17 @@ public class Doctor extends Actor{
 	{
 		this.earned = this.earned + newEarned;
 	}
+	
+	public void addChart(patientChart chart)
+	{
+		//adds new patient chart
+		this.patientChart.add(chart);
+	}
+	
+	public void clearChart()
+	{
+		//clears all patient charts from arraylist
+		this.patientChart.clear();
+	}
 }
+
