@@ -15,7 +15,7 @@ public class staff extends Actor {
 		this.password = password;
 	}
 	
-	public void checkIn(ArrayList<patient> patient,String patName, String birth, staff staff)
+	public void checkIn(ArrayList<patient> patient,String patName, String birth, staff staff, ArrayList<Doctor> doctor)
 	{
 		for(patient pat : patient)
 		{
@@ -27,6 +27,27 @@ public class staff extends Actor {
 					{
 						pat.patientChart.printChart();
 						//take input if changes are necessary
+						boolean input = true;
+						if(input)
+						{
+							//take input since changes are necessary
+						}
+						else
+						{
+							//nothing here since no changes are necessary
+						}
+						//say something about this being the updated chart
+						pat.patientChart.printChart();
+						//take doc's name
+						String docname = "";
+						for(Doctor doc : doctor)
+						{
+							if(doc.name == docname)
+							{
+								doc.addChart(pat.patientChart);
+								
+							}
+						}
 						
 					}
 					else
