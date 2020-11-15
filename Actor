@@ -3,13 +3,13 @@ public class Actor {
 	String name;
 	int clearance;
 	String password;
+	int id;
 	/*
 	 * clearance = 0, patient (shouldn't even have a clearance)
 	 * clearance = 1, staff
 	 * clearance = 2, nurse
 	 * clearance = 3, doctor
 	 * clearance = 4, CEO
-	 * clearance = 5, timer
 	 */
 	//empty constructor lol
 	public Actor()
@@ -17,10 +17,9 @@ public class Actor {
 		
 	}
 	
-	public Actor(String name, int clearance,String password)
+	public Actor(String name, int clearance)
 	{
 		this.name = name;
 		this.clearance = clearance;
-		this.password = password;
 	}
 }
