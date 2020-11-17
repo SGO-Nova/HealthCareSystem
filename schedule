@@ -1,6 +1,8 @@
 public class schedule {
-	static int[][] sched = new int[2][8];
+	//might need rework for implementation of dates as well.
 	
+	static Object[][] sched = new Object[2][8];//holds info for time, and if time is full or not
+	static Object[][] datedSched = new Object[2][7];//holds info of the above array, and the date.
 	public schedule()
 	{
 		for(int i = 0; i < 8; i++)
@@ -9,34 +11,76 @@ public class schedule {
 			{
 				if(j==0)
 				{
-					sched[i][j] = i+9;//sets time
+					if(i+9<=12)
+					{
+						sched[i][j] = i+9;//sets time
+					}
+					else
+					{
+						sched[i][j] = i-3;//sets time
+					}
 				}
 				else
 				{
-					sched[i][j] = 0;//sets status if open or not.
+					sched[i][j] = "Free";//sets status if open since this is a new schedule.
+				}
+			}
+		}
+		for(int i = 0; i < 7; i++)
+		{
+			for(int j = 0; j<2;j++)
+			{
+				if(j==0)
+				{
+					//set date
+				}
+				if(j==1)
+				{
+					datedSched[i][1] = sched;
+					
 				}
 			}
 		}
 	}
 	
-	public void updateSchedule(int time)
+	public boolean updateSchedule(int time,String date)
 	{
 		for(int i = 0; i < 8; i++)
 		{
-			if(time == sched[i][0])
+			if(time == Integer.parseInt(sched[i][0].toString()))
 			{
-				sched[i][1] = 1;
+				sched[i][1] = "Full";
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void cancelApp(String time,String date)
+	{
+		for(int x = 0; x<7;x++)
+		{
+			if(date == datedSched[x][0].toString())
+			{
+				for(int i = 0; i < 8; i++)
+				{
+					if(time == sched[i][0].toString())
+					{
+						
+						sched[i][1] = "Free";
+					}
+				}
 			}
 		}
 	}
 	
-	public boolean checkSchedule(int time)
+	public boolean checkSchedule(String time,String date)
 	{
 		for(int i = 0; i< 8; i++)
 		{
-			if(time == sched[i][0])
+			if(time == sched[i][0].toString())
 			{
-				if(sched[i][1] == 1)
+				if(sched[i][1].toString() == "Full")
 				{
 					return false;//returns false if they are not free at that time
 				}
@@ -44,13 +88,20 @@ public class schedule {
 		}
 		return true;//otherwise returns true, since they are free at that time
 	}
-	public void printSchedule()
+	
+	public void printSchedule(String date)
 	{
-		for(int i = 0; i<8; i++)
+		for(int x = 0; x < 7; x++)
 		{
-			for(int j = 0; j<2;j++)
+			if(datedSched[x][0].toString() == date)
 			{
-				//print, but in JavaFX
+				for(int i = 0; i<8; i++)
+				{
+					for(int j = 0; j<2;j++)
+					{
+						//print, but in JavaFX
+					}
+				}
 			}
 		}
 	}

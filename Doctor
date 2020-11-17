@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+
 public class Doctor extends Actor{
 	String name;
 	schedule schedule;
+	int earned;
+	ArrayList<patientChart> patientChart;
 	//basic constructor, defaults to a test case
 	public Doctor()
 	{
@@ -8,6 +12,7 @@ public class Doctor extends Actor{
 		this.schedule = new schedule();
 		this.clearance = 3;
 		this.password = "test";
+		this.earned = 0;
 	}
 	public Doctor(String name, schedule schedule, String password)
 	{
@@ -15,6 +20,24 @@ public class Doctor extends Actor{
 		this.name = name;
 		this.schedule = new schedule();
 		this.password = password;
+		this.earned = 0;
 	}
 	
+	public void updateEarned(int newEarned)
+	{
+		this.earned = this.earned + newEarned;
+	}
+	
+	public void addChart(patientChart chart)
+	{
+		//adds new patient chart
+		this.patientChart.add(chart);
+	}
+	
+	public void clearChart()
+	{
+		//clears all patient charts from arraylist
+		this.patientChart.clear();
+	}
 }
+
