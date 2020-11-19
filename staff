@@ -172,8 +172,71 @@ public class staff extends Actor {
 			}
 		}
 	}
-	public void payMedicalFee()
+	public void payMedicalFee(ArrayList<patient> patient)
 	{
-		
+		Bank bank = new Bank();
+		//Take input for patient name
+		String patName = "";
+		for(patient pat : patient)
+		{
+			if(pat.name.equals(patName))
+			{
+				pat.paymentInfo.print();
+				//take input for how to pay
+				int type = 0;
+				switch(type)
+				{
+					case(0):
+					{
+						//Credit
+						System.out.println("Please swipe your card.");
+						System.out.println("Card swiped.");
+						int refNum = bank.approval();
+						if(refNum == -1)
+						{
+							System.out.println("Card was denied.");
+							System.out.println("Please try another card or pay with cash.");
+							payMedicalFee(patient);
+						}
+						else
+						{
+							pat.paymentInfo.paymentType = "Credit";
+							pat.paymentInfo.referenceNumber = refNum;
+						}
+					}
+					case(1):
+					{
+						//Debit
+						System.out.println("Please swipe your card.");
+						System.out.println("Card swiped.");
+						System.out.println("Please enter your PIN.");
+						//take input for pin
+						int PIN = 3434;
+						int refNum = bank.approval();
+						if(refNum == -1)
+						{
+							System.out.println("Card was denied.");
+							System.out.println("Please try another card or pay with cash.");
+							payMedicalFee(patient);
+						}
+						else
+						{
+							pat.paymentInfo.paymentType = "Debit";
+							pat.paymentInfo.referenceNumber = refNum;
+						}
+					}
+					case(2):
+					{
+						//Cash
+						pat.paymentInfo.paymentType = "Cash";
+						pat.paymentInfo.referenceNumber = 0;
+					}
+					default:
+					{
+						System.out.println("This is an error, you should not be here");
+					}
+				}
+			}
+		}
 	}
 }
