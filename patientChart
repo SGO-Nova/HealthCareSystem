@@ -27,5 +27,6 @@ public class patientChart {
 	public void printChart()
 	{
 		//print, but in javaFX
+		System.out.println(email);
 	}
 }
