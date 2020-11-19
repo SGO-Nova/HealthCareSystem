@@ -11,4 +11,13 @@ public class paymentInformation {
 	{
 		
 	}
+	
+	public void print()
+	{
+		System.out.println("Date: " + date);
+		System.out.println("Pateint ID: "+ patientId);
+		System.out.println("Patient Name: "+ name);
+		System.out.println("Amount Owed: "+ amountOwed);
+		//needs to be changed for JavaFX
+	}
 }
