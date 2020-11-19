@@ -1,107 +1,137 @@
+import java.time.LocalDate;
+import java.util.ArrayList;
 public class schedule {
-	//might need rework for implementation of dates as well.
-	
-	static Object[][] sched = new Object[2][8];//holds info for time, and if time is full or not
-	static Object[][] datedSched = new Object[2][7];//holds info of the above array, and the date.
+	Object[][] schedule = new Object[365][2];//holds ALL the info. 
 	public schedule()
 	{
-		for(int i = 0; i < 8; i++)
+		for(int i = 0; i < 365; i++)
 		{
-			for(int j =0; j < 2; j++)
+			for(int j = 0; j < 2; j++)
 			{
 				if(j==0)
 				{
-					if(i+9<=12)
-					{
-						sched[i][j] = i+9;//sets time
-					}
-					else
-					{
-						sched[i][j] = i-3;//sets time
-					}
+					schedule[i][j] = LocalDate.of(2020,1,1).plusDays(i);
 				}
 				else
 				{
-					sched[i][j] = "Free";//sets status if open since this is a new schedule.
-				}
-			}
-		}
-		for(int i = 0; i < 7; i++)
-		{
-			for(int j = 0; j<2;j++)
-			{
-				if(j==0)
-				{
-					//set date
-				}
-				if(j==1)
-				{
-					datedSched[i][1] = sched;
-					
+					schedule[i][j] = new day();
 				}
 			}
 		}
 	}
 	
-	public boolean updateSchedule(int time,String date)
+	public void updateSchedule(int time,LocalDate date)
 	{
-		for(int i = 0; i < 8; i++)
+		for(int i = 0; i < 365; i++)
 		{
-			if(time == Integer.parseInt(sched[i][0].toString()))
+			if(date.equals(schedule[i][0]))
 			{
-				sched[i][1] = "Full";
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void cancelApp(String time,String date)
-	{
-		for(int x = 0; x<7;x++)
-		{
-			if(date == datedSched[x][0].toString())
-			{
-				for(int i = 0; i < 8; i++)
+				day temp = (day)schedule[i][1];
+				for(int j = 0; j < 9; j++)
 				{
-					if(time == sched[i][0].toString())
+					if((int)temp.time[j][0] == time)
 					{
-						
-						sched[i][1] = "Free";
+						temp.time[j][1] = false;
+					}
+				}
+				schedule[i][1] = temp;
+			}
+		}
+		
+	}
+	
+	public void rescheduleApp(LocalDate old, LocalDate now, int oldTime, int newTime)
+	{
+		for(int i = 0; i < 365; i++)
+		{
+			if(schedule[i][0].equals(old))
+			{
+				day temp = (day)schedule[i][1];
+				for(int j = 0; j < 9; j++)
+				{
+					if(oldTime==(int)temp.time[j][0] && (!(boolean)temp.time[j][1]))
+					{
+						temp.time[j][1] = true;
+						schedule[i][1] = temp;
+					}
+				}
+			}
+			if(schedule[i][0].equals(now))
+			{
+				day temp = (day)schedule[i][1];
+				for(int j = 0; j < 9; j++)
+				{
+					if(newTime==(int)temp.time[j][0] && ((boolean)temp.time[j][1]))
+					{
+						temp.time[j][1] = false;
+						schedule [i][1] = temp;
 					}
 				}
 			}
 		}
 	}
 	
-	public boolean checkSchedule(String time,String date)
+	public boolean checkSchedule(int time,LocalDate date)
 	{
-		for(int i = 0; i< 8; i++)
+		for(int i = 0; i < 365; i++)
 		{
-			if(time == sched[i][0].toString())
+			if(schedule[i][0].equals(date))
 			{
-				if(sched[i][1].toString() == "Full")
+				day temp = (day)schedule[i][1];
+				for(int j = 0; j < 9; j++)
 				{
-					return false;//returns false if they are not free at that time
+					if((int)temp.time[j][0] == time)
+					{
+						if((boolean)temp.time[j][1])
+						{
+							return true;
+						}
+					}
 				}
 			}
 		}
-		return true;//otherwise returns true, since they are free at that time
+		return false;//otherwise returns false, since they are NOT free at that time
 	}
 	
-	public void printSchedule(String date)
+	public void cancelApp(int time,LocalDate date,ArrayList<patient> patient)
 	{
-		for(int x = 0; x < 7; x++)
+		//take input for patient name
+		String patName = "test";
+		for(patient pat : patient)
 		{
-			if(datedSched[x][0].toString() == date)
+			if(pat.name.equals(patName))
 			{
-				for(int i = 0; i<8; i++)
+				for(int i = 0; i<365;i++)
 				{
-					for(int j = 0; j<2;j++)
+					if(date.equals((LocalDate)(pat.appointment.doctor.schedule.schedule[i][0])))
 					{
-						//print, but in JavaFX
+						day temp = (day)pat.appointment.doctor.schedule.schedule[i][1];
+						for(int j = 0; j < 9; j++)
+						{
+							if(time == (int)temp.time[j][0])
+							{
+								temp.time[j][1] = true;
+								pat.appointment.doctor.schedule.schedule[i][1] = temp;
+								pat.appointment = null;
+								return;
+							}
+						}
 					}
 				}
+			}
+		}
+	}
+	
+	public void printSchedule(LocalDate date)
+	{
+		for(int i = 0; i < 365; i++)
+		{
+			if(date.equals(schedule[i][0]))
+			{
+				day temp = (day)schedule[i][1];
+				temp.print();
+				temp = null;
+				System.gc();
 			}
 		}
 	}

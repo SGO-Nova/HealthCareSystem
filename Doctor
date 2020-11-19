@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public class Doctor extends Actor{
@@ -13,31 +14,35 @@ public class Doctor extends Actor{
 		this.clearance = 3;
 		this.password = "test";
 		this.earned = 0;
+		this.id = 123123;
+		this.patientChart = new ArrayList<patientChart>();
 	}
-	public Doctor(String name, schedule schedule, String password)
+	public Doctor(String name, String password)
 	{
 		this.clearance = 3;
 		this.name = name;
 		this.schedule = new schedule();
 		this.password = password;
 		this.earned = 0;
+		this.patientChart = new ArrayList<patientChart>();
 	}
 	
 	public void updateEarned(int newEarned)
 	{
-		this.earned = this.earned + newEarned;
+		//make sure input variable is above 0
+		earned += newEarned;
 	}
 	
 	public void addChart(patientChart chart)
 	{
 		//adds new patient chart
-		this.patientChart.add(chart);
+		patientChart.add(chart);
 	}
 	
 	public void clearChart()
 	{
 		//clears all patient charts from arraylist
-		this.patientChart.clear();
+		patientChart.clear();
 	}
 }
 
