@@ -1,3 +1,5 @@
+package Backend;
+
 public class treatmentRecord {
 	String date;
 	String reason;

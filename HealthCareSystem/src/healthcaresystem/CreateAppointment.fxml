@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="healthcaresystem.CreateAppointmentController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="healthcaresystem.LoginController">
    <children>
       <BorderPane layoutX="-2.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1920.0">
          <top>
@@ -106,7 +106,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Find">
+                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClick" prefHeight="53.0" prefWidth="137.0" text="Find">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>

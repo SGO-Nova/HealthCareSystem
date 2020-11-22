@@ -1,3 +1,5 @@
+package Backend;
+
 import java.util.ArrayList;
 
 public class nurse extends Actor {
@@ -8,6 +10,12 @@ public class nurse extends Actor {
 		this.password = "test";
 		this.id = 123345;
 	}
+        
+        public nurse(String name, String password){
+            this.name = name;
+            this.clearance = 2;
+            this.password = password;
+        }
 	
 	public void updateMeasurements(ArrayList<patient> patient)
 	{

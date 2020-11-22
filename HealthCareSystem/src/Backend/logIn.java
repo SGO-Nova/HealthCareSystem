@@ -1,8 +1,11 @@
+package Backend;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class logIn {
-	public static Object logIn(ArrayList<nurse> nurse,ArrayList<Doctor> doctor, ArrayList<staff> staff,ArrayList<CEO> ceo)
+	public static Object logIn(String ID, String pass, ArrayList<nurse> nurse,ArrayList<Doctor> doctor, ArrayList<staff> staff,ArrayList<CEO> ceo)
 	{
+            /*
 		System.out.println("Please enter your ID and password");
 		System.out.print("ID: ");
 		Scanner in = new Scanner(System.in);
@@ -15,6 +18,8 @@ public class logIn {
 		}
 		System.out.print("Password: ");
 		String pass = in.nextLine();
+            */
+            
 		for (nurse nur : nurse)
 		{
 			if(nur.id == Integer.parseInt(ID))
@@ -23,13 +28,13 @@ public class logIn {
 				if(nur.password.equals(pass))
 				{
 					System.out.println("Welcome back " + nur.name + "!");
-					in.close();
+					//in.close();
 					return nur;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
-					in.close();
+					//in.close();
 					return null;
 				}
 			}
@@ -41,13 +46,13 @@ public class logIn {
 				if(doc.password.equals(pass))
 				{
 					System.out.println("Welcome back " + doc.name + "!");
-					in.close();
+					//in.close();
 					return doc;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
-					in.close();
+					//in.close();
 					return null;
 				}
 			}
@@ -59,13 +64,13 @@ public class logIn {
 				if(stf.password.equals(pass))
 				{
 					System.out.println("Welcome back " + stf.name + "!");
-					in.close();
+					//in.close();
 					return stf;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
-					in.close();
+					//in.close();
 					return null;
 				}
 			}
@@ -77,19 +82,19 @@ public class logIn {
 				if(CEO.password.equals(pass))
 				{
 					System.out.println("Welcome back " + CEO.name + "!");
-					in.close();
+					//in.close();
 					return CEO;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
-					in.close();
+					//in.close();
 					return null;
 				}
 			}
 		}
 		System.out.println("That ID does not match any that are on file.");
-		in.close();
+		//in.close();
 		return null;
 	}
 	

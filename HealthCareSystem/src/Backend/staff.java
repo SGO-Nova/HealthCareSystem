@@ -1,3 +1,4 @@
+package Backend;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -121,7 +122,7 @@ public class staff extends Actor {
 	
 	
 	
-	public void checkIn(ArrayList<patient> patient,String patName, LocalDate birth, ArrayList<Doctor> doctor)
+	public void checkIn(ArrayList<patient> patient,String patName, String birth, ArrayList<Doctor> doctor)
 	{
 		for(patient pat : patient)
 		{

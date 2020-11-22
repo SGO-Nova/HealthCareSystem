@@ -1,3 +1,5 @@
+package Backend;
+
 import java.util.ArrayList;
 
 //parent class for Staff, Doctor, CEO, Patient, etc.
@@ -26,6 +28,14 @@ public class Actor {
 		this.id = id;
 	}
 	
+        public void setID(int ID){
+            this.id = ID;
+        }
+        
+        public String getName(){
+            return this.name;
+        }
+        
 	public int randomNum()
 	{
 		return (int)(Math.random()*((999999-100000)-1))+100000;
