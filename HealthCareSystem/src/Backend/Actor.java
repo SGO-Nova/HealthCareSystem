@@ -1,10 +1,11 @@
-package Backend;
+import java.util.ArrayList;
+
 //parent class for Staff, Doctor, CEO, Patient, etc.
 public class Actor {
 	String name;
 	int clearance;
 	String password;
-	int ID;
+	int id;
 	/*
 	 * clearance = 0, patient (shouldn't even have a clearance)
 	 * clearance = 1, staff
@@ -18,9 +19,42 @@ public class Actor {
 		
 	}
 	
-	public Actor(String name, int clearance)
+	public Actor(String name, int clearance, int id)
 	{
 		this.name = name;
 		this.clearance = clearance;
+		this.id = id;
+	}
+	
+	public int randomNum()
+	{
+		return (int)(Math.random()*((999999-100000)-1))+100000;
+	}
+	
+	public int createID(ArrayList<Doctor> doctor, ArrayList<patient> patient, ArrayList<staff> staff)
+	{
+		int id = randomNum();
+		for(Doctor doc : doctor)
+		{
+			if(doc.id == id)
+			{
+				createID(doctor,patient,staff);
+			}
+		}
+		for(patient pat : patient)
+		{
+			if(pat.id == id)
+			{
+				createID(doctor,patient,staff);
+			}
+		}
+		for(staff stf : staff)
+		{
+			if(stf.id == id)
+			{
+				createID(doctor,patient,staff);
+			}
+		}
+		return id;
 	}
 }
