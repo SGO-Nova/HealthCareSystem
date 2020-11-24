@@ -1,0 +1,25 @@
+public class report {
+	String docName;
+	int numOfPatServed;
+	int amountEarned;
+	public report()
+	{
+		docName = null;
+		numOfPatServed = 0;
+		amountEarned = 0;
+	}
+	public report(String docName, int numOfPatServed, int amountEarned)
+	{
+		this.docName = docName;
+		this.numOfPatServed = numOfPatServed;
+		this.amountEarned = amountEarned;
+	}
+	
+	public void print()
+	{
+		System.out.println("Doctor: " + docName);
+		System.out.println("Number of patients served: "+numOfPatServed);
+		System.out.println("Amount Earned: " + amountEarned);
+		System.out.println();
+	}
+}

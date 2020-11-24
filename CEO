@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class CEO extends Actor {
 	public CEO()
 	{
@@ -13,8 +15,11 @@ public class CEO extends Actor {
 		this.password = password;
 	}
 	
-	public void viewReport(CEO ceo)
+	public void viewReport(ArrayList<report> report)
 	{
-		
+		for(report x : report)
+		{
+			x.print();
+		}
 	}
 }

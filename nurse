@@ -19,15 +19,16 @@ public class nurse extends Actor {
 			if(pat.name.equals(patName))
 			{
 				//print patient chart :)
+				pat.patientChart.printChart();
 				//take input for new stuff
 				String height = "";
 				String bloodPressure = "";
 				String weight = "";
 				String reason = "";
-				pat.treatmentRecord.bloodPressure = bloodPressure;
-				pat.treatmentRecord.height = height;
-				pat.treatmentRecord.weight = weight;
-				pat.treatmentRecord.reason = reason;
+				pat.patientChart.treatmentRecord.bloodPressure = bloodPressure;
+				pat.patientChart.treatmentRecord.height = height;
+				pat.patientChart.treatmentRecord.weight = weight;
+				pat.patientChart.treatmentRecord.reason = reason;
 				set = 1;
 			}
 		}

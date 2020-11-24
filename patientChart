@@ -5,9 +5,11 @@ public class patientChart {
 	String email;
 	String SSN;
 	String insurance;
+	treatmentRecord treatmentRecord;
 	public patientChart()
 	{
 		this.patient = null;
+		this.treatmentRecord = new treatmentRecord();
 		this.address = "Home";
 		this.phoneNumber = "806-420-6969";
 		this.email = "an email@somewhere.com";

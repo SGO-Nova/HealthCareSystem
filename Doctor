@@ -1,10 +1,9 @@
-
 import java.util.ArrayList;
 
 public class Doctor extends Actor{
 	String name;
 	schedule schedule;
-	int earned;
+	report report;
 	ArrayList<patientChart> patientChart;
 	//basic constructor, defaults to a test case
 	public Doctor()
@@ -13,9 +12,10 @@ public class Doctor extends Actor{
 		this.schedule = new schedule();
 		this.clearance = 3;
 		this.password = "test";
-		this.earned = 0;
 		this.id = 123123;
 		this.patientChart = new ArrayList<patientChart>();
+		report = new report();
+		report.docName = this.name;
 	}
 	public Doctor(String name, String password)
 	{
@@ -23,14 +23,13 @@ public class Doctor extends Actor{
 		this.name = name;
 		this.schedule = new schedule();
 		this.password = password;
-		this.earned = 0;
 		this.patientChart = new ArrayList<patientChart>();
 	}
 	
 	public void updateEarned(int newEarned)
 	{
 		//make sure input variable is above 0
-		earned += newEarned;
+		report.amountEarned+=newEarned;
 	}
 	
 	public void addChart(patientChart chart)
@@ -44,5 +43,28 @@ public class Doctor extends Actor{
 		//clears all patient charts from arraylist
 		patientChart.clear();
 	}
+	public void updateServed()
+	{
+		report.numOfPatServed += 1;
+	}
+	
+	public void treatPatient(ArrayList<patient> patient)
+	{
+		//take input for patient name
+		String patName = "";
+		for(patient pat : patient)
+		{
+			if(pat.name.equals(patName))
+			{
+				pat.patientChart.printChart();
+				//take input for treatment/perscription
+				String treatment = "";
+				String perscription = "";
+				pat.patientChart.treatmentRecord.treatment = treatment;
+				pat.patientChart.treatmentRecord.perscription = perscription;
+				updateEarned((int)(Math.random() *((10000-100)+1)+100));
+				updateServed();
+			}
+		}
+	}
 }
-
