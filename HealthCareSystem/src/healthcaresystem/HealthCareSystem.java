@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import Backend.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HealthCareSystem extends Application {
     
@@ -27,7 +30,14 @@ public class HealthCareSystem extends Application {
                 System.out.println("CLEARING ALL NO-SHOW APPOINTMENTS");
             }
             if(((String)LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern))).equals("21:00:00")){
-                System.out.println("GENERATING DAILY REPORTS");
+                System.out.println("Making daily report");
+                LoginController repo = new LoginController(); 
+                try {
+                    repo.makeReport();
+                } catch (IOException ex) {
+                    Logger.getLogger(HealthCareSystem.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("Completed making daily report.");
             }
         }),
              new KeyFrame(Duration.seconds(1))

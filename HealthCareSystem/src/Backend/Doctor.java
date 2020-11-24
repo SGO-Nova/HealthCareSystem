@@ -6,6 +6,7 @@ public class Doctor extends Actor{
 	String name;
 	schedule schedule;
 	int earned;
+        int numberOfPatients;
 	ArrayList<patientChart> patientChart;
 	//basic constructor, defaults to a test case
 	public Doctor()
@@ -17,6 +18,7 @@ public class Doctor extends Actor{
 		this.earned = 0;
 		this.id = 123123;
 		this.patientChart = new ArrayList<patientChart>();
+                this.numberOfPatients = 0;
 	}
 	public Doctor(String name, String password)
 	{
@@ -26,6 +28,7 @@ public class Doctor extends Actor{
 		this.password = password;
 		this.earned = 0;
 		this.patientChart = new ArrayList<patientChart>();
+                this.numberOfPatients = 0;
 	}
 	
 	public void updateEarned(int newEarned)
@@ -40,6 +43,15 @@ public class Doctor extends Actor{
 		patientChart.add(chart);
 	}
 	
+        public void addNumberOfPatient(){
+            this.numberOfPatients += 1;
+        }
+        
+        public void resetPaitentsAndEarned(){
+            this.numberOfPatients = 0;
+            this.earned = 0;
+        }
+        
 	public void clearChart()
 	{
 		//clears all patient charts from arraylist
@@ -53,5 +65,14 @@ public class Doctor extends Actor{
         public schedule getSchedule(){
             return this.schedule;
         }
+        
+        public int getEarned(){
+            return this.earned;
+        }
+        
+        public int getNumberOfPatients(){
+            return this.numberOfPatients;
+        }
+        
 }
 

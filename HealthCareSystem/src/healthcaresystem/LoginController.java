@@ -28,6 +28,8 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -103,11 +105,14 @@ public class LoginController implements Initializable {
     private ArrayList<Doctor> doctor = new ArrayList<Doctor>();
     private ArrayList<staff> staff = new ArrayList<staff>();
     private ArrayList<CEO> ceo = new ArrayList<CEO>();
+    private ArrayList<String> reports = new ArrayList<String>();
+    private String[] report;
     private String pattern = "ccc | yyyy-MM-dd | hh:mm:ss a";
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+       
         try {
             File file = new File("src/healthcaresystem/Database/LoginInformation.txt"); 
             Scanner sc = new Scanner(file);
@@ -148,10 +153,16 @@ public class LoginController implements Initializable {
         for(int i = 0; i < doctor.size(); i++){
             doctorDropDown.getItems().addAll(doctor.get(i).getName());
         }
+        File path = new File("src/healthcaresystem/Database/Reports");
+        report = path.list();
+        System.out.println(report);
+        for(String rep : report){
+            reports.add(rep);
+        }
         ObservableList<Integer> times = FXCollections.observableArrayList(900,1000,1100,1200,1300,1400,1500,1600,1700);
         aTime.getItems().addAll(times);
         pType.getItems().addAll("Debit", "Credit", "Cash");
-        reportDropDown.getItems().addAll("11/24/2020", "11/25/2020");
+        reportDropDown.getItems().addAll(reports);
         
         try {
             File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
@@ -880,7 +891,9 @@ public class LoginController implements Initializable {
     
     public void updateReportText(ActionEvent event)throws IOException{
         try {
-            File file = new File("src/healthcaresystem/Database/Reports/11-24-2020.txt"); 
+            String link = "src/healthcaresystem/Database/Reports/";
+            link = link.concat(reportDropDown.getValue());
+            File file = new File(link); 
             Scanner sc = new Scanner(file);
             StringBuffer buffer = new StringBuffer();
             while (sc.hasNextLine()) {
@@ -950,6 +963,36 @@ public class LoginController implements Initializable {
         } else {
             System.out.println("Cancled Logout sequence");
         }
+    }
+    
+    public void makeReport()throws IOException{
+        try{
+            String link = "src/healthcaresystem/Database/Reports/";
+            link = link.concat(String.valueOf(LocalDate.parse(String.valueOf(LocalDate.now()),DateTimeFormatter.ISO_LOCAL_DATE)));
+            link = link.concat(".txt");
+            FileWriter writer = new FileWriter(link);
+            StringBuffer buffer = new StringBuffer();
+            System.out.println(link);
+
+            writer.append("Doctors:\n");
+            for(Doctor doc : doctor){
+                String doctor_name = doc.getName();
+                int number_of_paitents = doc.getNumberOfPatients();
+                int amount_earned = doc.getEarned();
+
+                String doctorFormat = String.format("\tName: Dr. %s\n\t\tNumber of Patients: %d\n\t\tAmount earned: $%d\n", doctor_name, number_of_paitents, amount_earned);
+                buffer.append(doctorFormat);
+                doc.resetPaitentsAndEarned();
+            }
+            buffer.append("\nReported at: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)));
+            writer.append(buffer);
+            writer.flush();
+        }catch(FileNotFoundException e){
+            System.out.println("No can do");
+        }
+        
+        
+        
     }
     
 }

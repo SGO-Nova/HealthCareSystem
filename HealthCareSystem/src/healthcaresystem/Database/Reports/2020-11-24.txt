@@ -1,0 +1,9 @@
+Doctors:
+	Name: Dr. Billy Jones
+		Number of Patients: 0
+		Amount earned: $0
+	Name: Dr. Christina Robinson
+		Number of Patients: 0
+		Amount earned: $0
+
+Reported at: Tue | 2020-11-24 | 08:00:01 PM
