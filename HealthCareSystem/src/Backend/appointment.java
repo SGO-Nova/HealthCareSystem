@@ -31,4 +31,8 @@ public class appointment {
             this.notes = note;
         }
 	
+        public Doctor getDoctor(){
+            return this.doctor;
+        }
+        
 }

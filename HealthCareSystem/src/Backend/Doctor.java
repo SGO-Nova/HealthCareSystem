@@ -49,5 +49,9 @@ public class Doctor extends Actor{
         public String getName(){
             return this.name;
         }
+        
+        public schedule getSchedule(){
+            return this.schedule;
+        }
 }
 

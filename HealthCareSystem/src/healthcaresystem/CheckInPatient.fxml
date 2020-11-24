@@ -2,8 +2,11 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -67,9 +70,154 @@
                </children>
             </AnchorPane>
          </top>
-         <center>
-            <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </center>
+         <right>
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1381.0" style="-fx-background-color: cfcfcf;" BorderPane.alignment="CENTER">
+            <Text layoutX="25.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </Text>
+            <TextField fx:id="fName" disable="true" layoutX="100.0" layoutY="21.0" opacity="0.7" prefHeight="51.0" prefWidth="236.0">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="lName" disable="true" layoutX="353.0" layoutY="21.0" opacity="0.7" prefHeight="51.0" prefWidth="350.0">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </TextField>
+            <Text layoutX="1136.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </Text>
+            <TextField fx:id="pID" disable="true" layoutX="1176.0" layoutY="21.0" opacity="0.7" prefHeight="51.0" prefWidth="159.0">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="doctorDropDown" disable="true" layoutX="99.0" layoutY="107.0" opacity="0.7" prefHeight="48.0" prefWidth="343.0" promptText="Doctor" />
+            <Text layoutX="14.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="536.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </Text>
+            <TextField fx:id="aDateY" disable="true" layoutX="605.0" layoutY="105.0" opacity="0.7" prefHeight="54.0" prefWidth="105.0" promptText="Year">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="aDateM" disable="true" layoutX="723.0" layoutY="104.0" opacity="0.7" prefHeight="54.0" prefWidth="105.0" promptText="Month">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="aDateD" disable="true" layoutX="841.0" layoutY="104.0" opacity="0.7" prefHeight="54.0" prefWidth="105.0" promptText="Day">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="aTime" disable="true" layoutX="1138.0" layoutY="106.0" opacity="0.7" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
+            <Text layoutX="1058.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes">
+               <font>
+                  <Font name="SansSerif" size="25.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="aNotes" disable="true" layoutX="95.0" layoutY="177.0" opacity="0.7" prefHeight="193.0" prefWidth="1239.0" />
+               <Text layoutX="140.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pre-Total">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="pTotal" layoutX="256.0" layoutY="418.0" prefHeight="51.0" prefWidth="236.0">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </TextField>
+               <Text layoutX="99.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Profit">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="dProfit" disable="true" layoutX="256.0" layoutY="486.0" opacity="0.7" prefHeight="51.0" prefWidth="236.0">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </TextField>
+               <Text layoutX="141.0" layoutY="589.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time Fee">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="tFee" disable="true" layoutX="256.0" layoutY="553.0" opacity="0.7" prefHeight="51.0" prefWidth="236.0">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </TextField>
+               <Text layoutX="203.0" layoutY="659.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tax">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="tax" disable="true" layoutX="256.0" layoutY="623.0" opacity="0.7" prefHeight="51.0" prefWidth="236.0">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </TextField>
+               <Text layoutX="160.0" layoutY="733.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
+                  <font>
+                     <Font name="SansSerif Regular" size="36.0" />
+                  </font>
+               </Text>
+               <TextField fx:id="total" disable="true" layoutX="256.0" layoutY="694.0" opacity="0.7" prefHeight="51.0" prefWidth="236.0">
+                  <font>
+                     <Font name="SansSerif" size="25.0" />
+                  </font>
+               </TextField>
+               <TextArea disable="true" editable="false" layoutX="566.0" layoutY="418.0" opacity="0.7" prefHeight="327.0" prefWidth="335.0" text="Prices:&#10;&#10;Check-up: $100&#10;Blood Work: $200&#10;Consultation: $500&#10;Scan Process: $1000&#10;Surgery: Varies($5000+)&#10;">
+                  <font>
+                     <Font name="SansSerif Regular" size="26.0" />
+                  </font>
+               </TextArea>
+               <Button disable="true" layoutX="965.0" layoutY="657.0" mnemonicParsing="false" opacity="0.6" prefHeight="86.0" prefWidth="185.0" style="-fx-background-color: green; -fx-background-radius: 20;" text="Check-in">
+                  <font>
+                     <Font name="SansSerif Regular" size="27.0" />
+                  </font>
+               </Button>
+               <CheckBox fx:id="check1" layoutX="955.0" layoutY="478.0" mnemonicParsing="false" text="Paper Work">
+                  <font>
+                     <Font name="SansSerif Regular" size="25.0" />
+                  </font>
+               </CheckBox>
+               <Text layoutX="959.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CheckList:">
+                  <font>
+                     <Font name="SansSerif Regular" size="36.0" />
+                  </font>
+               </Text>
+               <CheckBox fx:id="check2" layoutX="955.0" layoutY="523.0" mnemonicParsing="false" text="Information Cross-Check">
+                  <font>
+                     <Font name="SansSerif Regular" size="25.0" />
+                  </font>
+               </CheckBox>
+               <CheckBox fx:id="check3" layoutX="955.0" layoutY="573.0" mnemonicParsing="false" text="Price Updated">
+                  <font>
+                     <Font name="SansSerif Regular" size="25.0" />
+                  </font>
+               </CheckBox>
+            </AnchorPane>
+         </right>
       </BorderPane>
+      <ComboBox layoutX="24.0" layoutY="123.0" prefHeight="41.0" prefWidth="477.0" promptText="Check-in" style="-fx-font-family: SansSerif; -fx-font-size: 18;" />
    </children>
 </AnchorPane>

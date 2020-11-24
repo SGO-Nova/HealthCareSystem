@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner; 
 import java.util.StringTokenizer;
 import java.util.ArrayList;
@@ -87,11 +88,15 @@ public class LoginController implements Initializable {
     @FXML
     private TextArea aNotes;
     @FXML
+    private TextArea reportArea;
+    @FXML
     private ComboBox<String> doctorDropDown = new ComboBox<String>();
     @FXML
     private ComboBox<Integer> aTime = new ComboBox<Integer>();
     @FXML
     private ComboBox<String> pType = new ComboBox<String>();
+    @FXML
+    private ComboBox<String> reportDropDown = new ComboBox<String>();
     
     private ArrayList<patient> patient = new ArrayList<patient>();
     private ArrayList<nurse> nurse = new ArrayList<nurse>();
@@ -99,7 +104,6 @@ public class LoginController implements Initializable {
     private ArrayList<staff> staff = new ArrayList<staff>();
     private ArrayList<CEO> ceo = new ArrayList<CEO>();
     private String pattern = "ccc | yyyy-MM-dd | hh:mm:ss a";
-    private int counter = 0;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -147,6 +151,7 @@ public class LoginController implements Initializable {
         ObservableList<Integer> times = FXCollections.observableArrayList(900,1000,1100,1200,1300,1400,1500,1600,1700);
         aTime.getItems().addAll(times);
         pType.getItems().addAll("Debit", "Credit", "Cash");
+        reportDropDown.getItems().addAll("11/24/2020", "11/25/2020");
         
         try {
             File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
@@ -367,7 +372,6 @@ public class LoginController implements Initializable {
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
         window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
         window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
-        System.out.println(patient.get(0).getRecord());
     }
     
     public void giveTreatmentClick(ActionEvent event) throws IOException{
@@ -421,7 +425,6 @@ public class LoginController implements Initializable {
         window.setScene(mainSystemScene);
         window.show();
     }
-    
     
     private int pat;
     public void findClick(ActionEvent event) throws IOException{
@@ -646,6 +649,20 @@ public class LoginController implements Initializable {
           } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
           }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+        alert.setTitle("Patient Information Update");
+        alert.setHeaderText("Patient Information has been updated!");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
+            Scene mainSystemScene = new Scene(mainSystemParent);
+
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(mainSystemScene);
+            window.show();
+        }
         //ADD POP UP TO LET KNOW Patient info was updated
     }
     
@@ -715,25 +732,50 @@ public class LoginController implements Initializable {
             time %= 13;
             time += 1;
         }
-        System.out.println(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE) + ", " +  time + ", " + aNotes.getText() + ", " + doctorDropDown.getValue() + ", " + String.valueOf(patient.get(id-1).getName()));
-        staff.get(0).scheduleApp(doctor, patient, LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), time, aNotes.getText(), doctorDropDown.getValue(), String.valueOf(patient.get(id-1).getName()));
+        //System.out.println(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE) + ", " +  time + ", " + aNotes.getText() + ", " + doctorDropDown.getValue() + ", " + String.valueOf(patient.get(id-1).getName()));
         try{
-            StringBuffer buffer = new StringBuffer();
-            File file = new File("src/healthcaresystem/Database/PatientAppointment.txt"); 
-            FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
-            Scanner sc1 = new Scanner(file);
-            while (sc1.hasNextLine()) {
-                buffer.append(sc1.nextLine()).append(System.lineSeparator());
+            staff.get(0).scheduleApp(doctor, patient, LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), time, aNotes.getText(), doctorDropDown.getValue(), String.valueOf(patient.get(id-1).getName()));
+            try{
+                StringBuffer buffer = new StringBuffer();
+                File file = new File("src/healthcaresystem/Database/PatientAppointment.txt"); 
+                Scanner sc1 = new Scanner(file);
+                while (sc1.hasNextLine()) {
+                    buffer.append(sc1.nextLine()).append(System.lineSeparator());
+                }
+                sc1.close();
+                System.out.println(buffer.toString());
+                String newLine = String.valueOf(id) + "," + aDateY.getText() + "," + aDateM.getText() + "," + aDateD.getText() + "," + aTime.getValue() + "," + doctorDropDown.getValue() + "," + aNotes.getText();
+                buffer.append(newLine).append(System.lineSeparator());
+                System.out.println(buffer.toString());
+                FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
+                writer.append(buffer);
+                writer.flush();
+                writer.close();
+              } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+              }
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+            alert.setTitle("Patient Creation");
+            alert.setHeaderText("Patient Appointment has been created!");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK){
+                Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
+                Scene mainSystemScene = new Scene(mainSystemParent);
+
+                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                window.setScene(mainSystemScene);
+                window.show();
             }
-            String newLine = String.valueOf(id) + "," + aDateY.getText() + "," + aDateM + "," + aDateD + "," + aTime + "," + doctorDropDown.getValue() + "," + aNotes.getText();
-            buffer.append(newLine);
-            writer.append(buffer);
-            writer.flush();
-            writer.close();
-            sc1.close();
-          } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-          }
+        }catch(DateTimeParseException d){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Make sure the date in put in correctly! \n yyyy-mm-dd");
+            Optional<ButtonType> result = alert.showAndWait();
+        }
+        
     //ADD POP UP TO LET KNOW APPOINTMENT WAS CREATED
     }
     
@@ -772,6 +814,20 @@ public class LoginController implements Initializable {
           } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
           }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+        alert.setTitle("Patient Information Update");
+        alert.setHeaderText("Patient Information has been updated!");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
+            Scene mainSystemScene = new Scene(mainSystemParent);
+
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(mainSystemScene);
+            window.show();
+        }
     }
  
     public void updateClickAppointment(ActionEvent event) throws IOException{
@@ -806,5 +862,94 @@ public class LoginController implements Initializable {
         }catch (FileNotFoundException e) {
           System.out.println("An error occurred.");
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+        alert.setTitle("Patient Appointment Update");
+        alert.setHeaderText("Patient Appointment has been updated!");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
+            Scene mainSystemScene = new Scene(mainSystemParent);
+
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(mainSystemScene);
+            window.show();
+        }
     }
+    
+    public void updateReportText(ActionEvent event)throws IOException{
+        try {
+            File file = new File("src/healthcaresystem/Database/Reports/11-24-2020.txt"); 
+            Scanner sc = new Scanner(file);
+            StringBuffer buffer = new StringBuffer();
+            while (sc.hasNextLine()) {
+                buffer.append(sc.nextLine()+System.lineSeparator());
+            }
+            sc.close();
+            reportArea.setText(buffer.toString());
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+          }
+    }
+    
+    public void cancelAppClick(ActionEvent event)throws IOException{
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.getButtonTypes().removeAll(ButtonType.OK);
+        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+        alert.getButtonTypes().add(ButtonType.YES);
+        alert.getButtonTypes().add(ButtonType.NO);
+        alert.setTitle("Cancel Appointment");
+        alert.setHeaderText("Are you sure you want to canel the appointment?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.YES){
+            for(Doctor doc : doctor){
+                if(doc.getName().equals(patient.get(Integer.parseInt(pID.getText())-1).getAppointment().getDoctor().getName())){
+                    String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
+                    doc.getSchedule().cancelApp(aTime.getValue(), LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), patient);
+                }
+            }
+           try {
+            StringBuffer buffer = new StringBuffer();
+            File file = new File("src/healthcaresystem/Database/PatientAppointment.txt"); 
+            Scanner sc1 = new Scanner(file);
+            while (sc1.hasNextLine()) {
+                buffer.append(sc1.nextLine()+System.lineSeparator());
+            }
+            sc1.close();
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                StringTokenizer tok = new StringTokenizer(line, ",");
+                if(tok.nextToken().equals(pID.getText())){
+                    String all = buffer.toString().replaceAll(line, "").trim();
+                    sc.close();
+                    FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
+                    writer.append(all);
+                    writer.flush();
+                    System.out.println("Appointment Canceled");
+                    break;
+                }
+            }
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+          }
+             
+            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
+            Scene mainSystemScene = new Scene(mainSystemParent);
+
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(mainSystemScene);
+            window.show();
+
+            Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+            window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
+            window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+        } else {
+            System.out.println("Cancled Logout sequence");
+        }
+    }
+    
 }

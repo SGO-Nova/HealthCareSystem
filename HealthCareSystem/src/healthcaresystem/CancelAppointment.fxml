@@ -194,7 +194,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <Button layoutX="1131.0" layoutY="833.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #FF1010; -fx-border-width: 2px; -fx-border-color: Black;" text="Cancel Appintment">
+                  <Button layoutX="1131.0" layoutY="833.0" mnemonicParsing="false" onAction="#cancelAppClick" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #FF1010; -fx-border-width: 2px; -fx-border-color: Black;" text="Cancel Appintment">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
