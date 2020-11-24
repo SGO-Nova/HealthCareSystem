@@ -146,7 +146,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="898.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Social Security">
+                  <Text layoutX="904.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Social Security">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -178,7 +178,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="aDate" disable="true" layoutX="148.0" layoutY="546.0" prefHeight="51.0" prefWidth="342.0">
+                  <TextField fx:id="aDateY" disable="true" layoutX="148.0" layoutY="546.0" prefHeight="54.0" prefWidth="105.0" promptText="Year">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -208,7 +208,7 @@
                         <Font name="SansSerif" size="24.0" />
                      </font>
                   </Text>
-                  <Text layoutX="1466.0" layoutY="652.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Put the reason for updating the appointment in the notes." textAlignment="JUSTIFY" wrappingWidth="400.6458740234375">
+                  <Text layoutX="1466.0" layoutY="652.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure you confirm they want to cancel their appointment before canceling their appointment." textAlignment="JUSTIFY" wrappingWidth="400.6458740234375">
                      <font>
                         <Font name="SansSerif" size="24.0" />
                      </font>
@@ -237,6 +237,26 @@
                      </cursor>
                   </Button>
                   <ComboBox fx:id="doctorDropDown" disable="true" layoutX="147.0" layoutY="470.0" prefHeight="48.0" prefWidth="343.0" promptText="Doctor" />
+                  <Text layoutX="972.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="pBirthday" disable="true" layoutX="1070.0" layoutY="178.0" prefHeight="51.0" prefWidth="313.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="aDateM" disable="true" layoutX="266.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Month">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="aDateD" disable="true" layoutX="384.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Day">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
          </center>

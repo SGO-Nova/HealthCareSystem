@@ -2,33 +2,51 @@ package Backend;
 
 public class patientChart {
 	patient patient;
-	String address;
-	String phoneNumber;
-	String email;
 	String SSN;
-	String insurance;
+        String Address1;
+        String Address2;
+        String Email;
+        String Insurance;
+        String Phone1;
+        
+        
 	public patientChart()
 	{
 		this.patient = null;
-		this.address = "Home";
-		this.phoneNumber = "806-420-6969";
-		this.email = "an email@somewhere.com";
-		this.SSN = "420";
-		this.insurance = "Cigna";
+                this.Address1 = "123 ABC Street";
+                this.Address2 = "";
+                this.Email = "test@email.com";
+                this.Insurance = "Real Ins. Co.";
+                this.Phone1 = "(333)234-5469";
+                this.SSN = "324135643";
 	}
-	public patientChart(patient patient, String address, String phoneNumber, String email, String SSN, String insurance)
+	public patientChart(patient patient,String add1, String add2, String email, String ins, String ph1, String SSN)
 	{
 		this.patient = patient;
-		this.address = address;
-		this.phoneNumber = phoneNumber;
-		this.email = email;
 		this.SSN = SSN;
-		this.insurance = insurance;
+                this.Address1 = add1;
+                this.Address2 = add2;
+                this.Email = email;
+                this.Insurance = ins;
+                this.Phone1 = ph1;
 	}
 	
-	public void printChart()
-	{
-		//print, but in javaFX
-		System.out.println(email);
-	}
+        public String getAddress1(){
+            return this.Address1;
+        }
+        public String getAddress2(){
+            return this.Address2;
+        }
+        public String getEmail(){
+            return this.Email;
+        }
+        public String getInsurance(){
+            return this.Insurance;
+        }
+        public String getPhone1(){
+            return this.Phone1;
+        }
+        public String getSSN(){
+            return this.SSN;
+        }
 }

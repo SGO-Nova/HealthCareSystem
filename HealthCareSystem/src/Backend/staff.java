@@ -18,7 +18,7 @@ public class staff extends Actor {
 		this.password = password;
 	}
 	
-	public void scheduleApp(ArrayList<Doctor> doctor,String docName, ArrayList<patient> patient)
+	public void scheduleApp(ArrayList<Doctor> doctor, ArrayList<patient> patient, LocalDate date, int time, String notes, String docName, String patName)
 	{
 		int appSet = 0;
 		for(Doctor doc : doctor)
@@ -27,21 +27,21 @@ public class staff extends Actor {
 			{
 				
 				//take input of date for appointment
-				LocalDate date = LocalDate.now();
+				//LocalDate date = LocalDate.now();
 				System.out.println("Doctors current schedule: ");
 				doc.schedule.printSchedule(date);
 				//staff enters patients name, date and time for their appointment
-				String patName = "test";//edit this so that it can take an input
-				int time = 10;//edit this so that it can take an input
+				//String patName = "test";//edit this so that it can take an input
+				//int time = 10;//edit this so that it can take an input
 				if(doc.schedule.checkSchedule(time,date))
 				{
-					doc.schedule.updateSchedule(time,date);
-					appointment app = new appointment(doc,date,time);
+					//doc.schedule.updateSchedule(time,date);
+					appointment app = new appointment(doc,date,time, notes);
 					for(patient pat : patient)
 					{
-						if(patName.equals(pat.name))
+						if(patName.equals(pat.getFname() + " " + pat.getLname()))
 						{
-							pat.appointment = app;
+							pat.setAppointment(app);
 							doc.schedule.updateSchedule(time, date);
 							System.out.println("Appointment Scheduled");
 							doc.schedule.printSchedule(date);
@@ -59,13 +59,14 @@ public class staff extends Actor {
 		}
 	}
 	
-	public void changeApp(ArrayList<patient> patient, String patientName,ArrayList<Doctor> doctor)
+	public void changeApp(ArrayList<patient> patient, String patientName,ArrayList<Doctor> doctor, LocalDate date, int time, String note)
 	{
 		//take input for patient name here, just passing it for testing purposes.
 		for(patient pat : patient)
 		{
 			if(pat.name.equals(patientName))
 			{
+                            System.out.println(pat.getAppointment());
 				if(pat.appointment!=null)
 				{
 					//System.out.println("Appointment found...");
@@ -78,9 +79,9 @@ public class staff extends Actor {
 							System.out.println("Doctors current schedule: ");
 							doc.schedule.printSchedule(pat.appointment.date);
 							//take input for new date/time
-							LocalDate date = LocalDate.now();
+							//LocalDate date = LocalDate.now();
 							//LocalDate date = LocalDate.of(year,month,day);
-							int time = 9;
+							//int time = 9;
 							//int time = input of some kind.
 							if(doc.schedule.checkSchedule(time,date))
 							{
@@ -89,6 +90,7 @@ public class staff extends Actor {
 								System.out.println("Doctors updated schedule: ");
 								doc.schedule.printSchedule(date);
 								System.out.println("Appointment Rescheduled");
+                                                                pat.appointment.setNote(note);
 							}
 							else
 							{
@@ -128,6 +130,7 @@ public class staff extends Actor {
 		{
 			if(pat.name.equals(patName))
 			{
+                            int id = pat.getID();
 				pat.birthday = birth;
 				if(pat.birthday.equals(birth))
 				{
@@ -135,14 +138,14 @@ public class staff extends Actor {
 					if(pat.patientChart != null)
 					{
 						System.out.println("Existing Patient");
-						pat.patientChart.printChart();
+						//pat.patientChart.printChart();
 						//take input if changes are necessary
 						boolean input = false;
 						if(input)
 						{
 							//take input since changes are necessary
 							//say something about this being the updated chart
-							pat.patientChart.printChart();
+							//pat.patientChart.printChart();
 						}
 						else
 						{
@@ -167,7 +170,7 @@ public class staff extends Actor {
 						}
 					}
 					//need to take input for stuff to put into payment information.
-					pat.paymentInfo = new paymentInformation();
+					pat.paymentInfo.setAmountOwed(10000);
 					pat.appointment = null;
 				}
 			}

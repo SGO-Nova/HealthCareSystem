@@ -131,11 +131,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="pPhone2" disable="true" layoutX="1068.0" layoutY="166.0" prefHeight="51.0" prefWidth="315.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Text layoutX="77.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -146,7 +141,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="898.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Social Security">
+                  <Text layoutX="904.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Social Security">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -178,7 +173,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="aDate" layoutX="148.0" layoutY="546.0" prefHeight="51.0" prefWidth="342.0">
+                  <TextField fx:id="aDateY" layoutX="148.0" layoutY="546.0" prefHeight="54.0" prefWidth="105.0" promptText="Year">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -195,7 +190,7 @@
                      </font>
                   </Text>
                   <TextArea fx:id="aNotes" layoutX="148.0" layoutY="628.0" prefHeight="193.0" prefWidth="1239.0" />
-                  <Button layoutX="1249.0" layoutY="833.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="137.0" text="Update">
+                  <Button layoutX="1249.0" layoutY="833.0" mnemonicParsing="false" onAction="#updateClickAppointment" prefHeight="53.0" prefWidth="137.0" text="Update">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -237,6 +232,26 @@
                      </cursor>
                   </Button>
                   <ComboBox fx:id="doctorDropDown" layoutX="147.0" layoutY="470.0" prefHeight="48.0" prefWidth="343.0" promptText="Doctor" />
+                  <Text layoutX="972.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="pBirthday" disable="true" layoutX="1070.0" layoutY="178.0" prefHeight="51.0" prefWidth="313.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="aDateM" layoutX="266.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Month">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="aDateD" layoutX="384.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Day">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
                </children>
             </AnchorPane>
          </center>

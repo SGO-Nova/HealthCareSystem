@@ -45,5 +45,9 @@ public class Doctor extends Actor{
 		//clears all patient charts from arraylist
 		patientChart.clear();
 	}
+        
+        public String getName(){
+            return this.name;
+        }
 }
 

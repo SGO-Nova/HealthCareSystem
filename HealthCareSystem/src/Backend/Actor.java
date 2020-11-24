@@ -36,6 +36,10 @@ public class Actor {
             return this.name;
         }
         
+        public int getID(){
+            return this.id;
+        }
+        
 	public int randomNum()
 	{
 		return (int)(Math.random()*((999999-100000)-1))+100000;
