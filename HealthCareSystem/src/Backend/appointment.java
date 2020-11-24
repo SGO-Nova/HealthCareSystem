@@ -35,4 +35,16 @@ public class appointment {
             return this.doctor;
         }
         
+        public LocalDate getDate(){
+            return this.date;
+        }
+        
+        public int getTime(){
+            return this.time;
+        }
+        
+        public String getNotes(){
+            return this.notes;
+        }
+        
 }

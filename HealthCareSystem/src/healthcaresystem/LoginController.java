@@ -27,6 +27,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner; 
 import java.util.StringTokenizer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,6 +40,14 @@ import javafx.util.Duration;
 
 public class LoginController implements Initializable {
 
+    @FXML
+    private Button checkButt;
+    @FXML
+    private CheckBox check1;
+    @FXML
+    private CheckBox check2;
+    @FXML
+    private CheckBox check3;
     @FXML
     private TextField loginID;
     @FXML
@@ -84,6 +93,16 @@ public class LoginController implements Initializable {
     @FXML
     private TextField pBP2;
     @FXML
+    private TextField pTotal;
+    @FXML
+    private TextField dProfit;
+    @FXML
+    private TextField tFee;
+    @FXML
+    private TextField tax;
+    @FXML
+    private TextField total;
+    @FXML
     private TextArea aReason;
     @FXML
     private TextArea aTreatment;
@@ -94,12 +113,15 @@ public class LoginController implements Initializable {
     @FXML
     private ComboBox<String> doctorDropDown = new ComboBox<String>();
     @FXML
+    private ComboBox<String> checkInDropDown = new ComboBox<String>();
+    @FXML
     private ComboBox<Integer> aTime = new ComboBox<Integer>();
     @FXML
     private ComboBox<String> pType = new ComboBox<String>();
     @FXML
     private ComboBox<String> reportDropDown = new ComboBox<String>();
     
+    private ArrayList<patient> appointments_today = new ArrayList<patient>();
     private ArrayList<patient> patient = new ArrayList<patient>();
     private ArrayList<nurse> nurse = new ArrayList<nurse>();
     private ArrayList<Doctor> doctor = new ArrayList<Doctor>();
@@ -150,19 +172,8 @@ public class LoginController implements Initializable {
         
         
         
-        for(int i = 0; i < doctor.size(); i++){
-            doctorDropDown.getItems().addAll(doctor.get(i).getName());
-        }
-        File path = new File("src/healthcaresystem/Database/Reports");
-        report = path.list();
-        System.out.println(report);
-        for(String rep : report){
-            reports.add(rep);
-        }
-        ObservableList<Integer> times = FXCollections.observableArrayList(900,1000,1100,1200,1300,1400,1500,1600,1700);
-        aTime.getItems().addAll(times);
-        pType.getItems().addAll("Debit", "Credit", "Cash");
-        reportDropDown.getItems().addAll(reports);
+        
+       
         
         try {
             File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
@@ -257,6 +268,23 @@ public class LoginController implements Initializable {
             );
             clock.setCycleCount(Animation.INDEFINITE);
             clock.play();
+            for(int i = 0; i < doctor.size(); i++){
+                doctorDropDown.getItems().addAll(doctor.get(i).getName());
+            }
+            File path = new File("src/healthcaresystem/Database/Reports");
+            report = path.list();
+            reports.addAll(Arrays.asList(report));
+             ObservableList<Integer> times = FXCollections.observableArrayList(900,1000,1100,1200,1300,1400,1500,1600,1700);
+            aTime.getItems().addAll(times);
+            pType.getItems().addAll("Debit", "Credit", "Cash");
+            reportDropDown.getItems().addAll(reports);
+            for(patient pat : patient){
+                if((pat.getAppointment() != null) && (pat.getAppointment().getDate().toString().equals(LocalDate.now().toString()))){
+                    appointments_today.add(pat);
+                }
+            }
+            for(int i = 0; i < appointments_today.size(); i++)
+                checkInDropDown.getItems().addAll(appointments_today.get(i).getName());
     }       
     
     @FXML
@@ -993,6 +1021,58 @@ public class LoginController implements Initializable {
         
         
         
+    }
+    
+    public void checkInClick(ActionEvent event)throws IOException{
+        System.out.println("CHECKING IN!");
+    }
+    
+    public void checkInUpdate(ActionEvent event)throws IOException{
+        for(patient pat : patient){
+            if(checkInDropDown.getValue().toString().equals(pat.getName())){
+                fName.setText(pat.getFname());
+                lName.setText(pat.getLname());
+                pID.setText(String.valueOf(pat.getID()));
+                doctorDropDown.setValue(pat.getAppointment().getDoctor().getName());       
+                StringTokenizer tok = new StringTokenizer(pat.getAppointment().getDate().toString(),"-"); 
+                String dateY = tok.nextToken();
+                String dateM = tok.nextToken();
+                String dateD = tok.nextToken();
+                aDateY.setText(dateY);
+                aDateM.setText(dateM);
+                aDateD.setText(dateD);
+                int time = pat.getAppointment().getTime();
+                if(time < 800){
+                    time += 1200;
+                }
+                aTime.setValue(time);
+                aNotes.setText(pat.getAppointment().getNotes());
+            }
+        }
+        
+    }
+    
+    public void checkCheck(ActionEvent event)throws IOException{
+        System.out.println(check1.selectedProperty().getValue() +","+check2.selectedProperty().getValue()+","+check3.selectedProperty().getValue());
+        if(check1.selectedProperty().getValue() && check2.selectedProperty().getValue() && check3.selectedProperty().getValue()){
+            System.out.println("Enabling");
+            checkButt.setDisable(false);
+            checkButt.setOpacity(1);
+        }
+        else{
+            checkButt.setDisable(true);
+            checkButt.setOpacity(.6);
+        }
+    }
+    
+    public void totalUpdate(ActionEvent event)throws IOException{
+        int pre_total = Integer.parseInt(pTotal.getText());
+        dProfit.setText(String.valueOf(pre_total*.25));
+        tFee.setText(String.valueOf(pre_total*.1));
+        int subTotal = (int) (pre_total + (pre_total*.25) + (pre_total*.1));
+        tax.setText(String.valueOf(subTotal * .0825));
+        total.setText(String.valueOf(subTotal + subTotal*.0825));
+        check3.selectedProperty().setValue(true);
     }
     
 }
