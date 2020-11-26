@@ -29,6 +29,7 @@ import java.util.StringTokenizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.Animation;
@@ -41,7 +42,27 @@ import javafx.util.Duration;
 public class LoginController implements Initializable {
 
     @FXML
+    private Button A1;
+    @FXML
+    private Button A2;
+    @FXML
+    private Button A3;
+    @FXML
+    private Button CA;
+    @FXML
+    private Button PF;
+    @FXML
+    private Button UM;
+    @FXML
+    private Button GT;
+    @FXML
+    private Button VR;
+    @FXML
     private Button checkButt;
+    @FXML
+    private Button pButton;
+    @FXML
+    private Button pCCI;
     @FXML
     private CheckBox check1;
     @FXML
@@ -103,6 +124,18 @@ public class LoginController implements Initializable {
     @FXML
     private TextField total;
     @FXML
+    private TextField cardNumber;
+    @FXML
+    private TextField cardExp1;
+    @FXML
+    private TextField cardExp2;
+    @FXML
+    private TextField cardCVV;
+    @FXML
+    private TextField cardName;
+    @FXML
+    private TextField cardZIP;
+    @FXML
     private TextArea aReason;
     @FXML
     private TextArea aTreatment;
@@ -131,10 +164,13 @@ public class LoginController implements Initializable {
     private String[] report;
     private String pattern = "ccc | yyyy-MM-dd | hh:mm:ss a";
     
+
+    
+  
+    
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-       
+    public void initialize(URL url, ResourceBundle rb) { 
         try {
             File file = new File("src/healthcaresystem/Database/LoginInformation.txt"); 
             Scanner sc = new Scanner(file);
@@ -169,12 +205,7 @@ public class LoginController implements Initializable {
           } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
           }
-        
-        
-        
-        
-       
-        
+
         try {
             File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
             Scanner sc = new Scanner(file);
@@ -195,8 +226,6 @@ public class LoginController implements Initializable {
                 patient patien = new patient(Fname, Lname, birthday);
                 patien.setChart(new patientChart(patien, add1, add2, email, ins, ph1, ssn));
                 patien.setID(ID);
-                paymentInformation paymentInfo = new paymentInformation(ID, patien.getName(), 100000, LocalDate.now());
-                patien.setPayment(paymentInfo);
                 patient.add(patien);
             }
             sc.close();
@@ -247,9 +276,27 @@ public class LoginController implements Initializable {
                         patient.get(ID-1).setAppointment(new appointment(doc, date, time, Notes));
                     }
                 }
+            }
+            sc.close();
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+          }
+        try {
+            File file = new File("src/healthcaresystem/Database/PatientDueRecord.txt"); 
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                StringTokenizer tok = new StringTokenizer(sc.nextLine(), ",");
+
+                int ID = Integer.parseInt(tok.nextToken());
+                int owe = Integer.parseInt(tok.nextToken());
+                String DateY = tok.nextToken();
+                String DateM = tok.nextToken();
+                String DateD = tok.nextToken();
                 
-                
-                
+                String date = DateY + "-" + DateM + "-" + DateD;
+                patient patien = patient.get(ID-1);
+                paymentInformation paymentInfo = new paymentInformation(ID, patien.getName(), owe, LocalDate.parse(date));
+                patien.setPayment(paymentInfo);
             }
             sc.close();
           } catch (FileNotFoundException e) {
@@ -283,20 +330,101 @@ public class LoginController implements Initializable {
                     appointments_today.add(pat);
                 }
             }
-            for(int i = 0; i < appointments_today.size(); i++)
+            for(int i = 0; i < appointments_today.size(); i++){
                 checkInDropDown.getItems().addAll(appointments_today.get(i).getName());
+                System.out.println(appointments_today.get(i).getName() + ": " + i);
+            }
+            try{
+                StringBuffer buffer3 = new StringBuffer();
+                File file = new File("src/healthcaresystem/Database/CurrentClearance.txt");
+                Scanner sc1 = new Scanner(file);
+                while (sc1.hasNextLine()) {
+                    buffer3.append(sc1.nextLine());
+                }
+                sc1.close();
+                String buf = buffer3.toString();
+                try{
+                    switch(Integer.parseInt(buf)){
+                        case 1:
+                            A1.setDisable(false);
+                            A2.setDisable(false);
+                            A3.setDisable(false);
+                            CA.setDisable(false);
+                            PF.setDisable(false);
+                            UM.setDisable(true);
+                            GT.setDisable(true);
+                            VR.setDisable(true);
+                            break;
+                        case 2:
+                            A1.setDisable(true);
+                            A2.setDisable(true);
+                            A3.setDisable(true);
+                            CA.setDisable(true);
+                            PF.setDisable(true);
+                            UM.setDisable(false);
+                            GT.setDisable(true);
+                            VR.setDisable(true);
+                            break;
+                        case 3:
+                            A1.setDisable(true);
+                            A2.setDisable(true);
+                            A3.setDisable(true);
+                            CA.setDisable(true);
+                            PF.setDisable(true);
+                            UM.setDisable(true);
+                            GT.setDisable(false);
+                            VR.setDisable(true);
+                            break;
+                        case 4:
+                            A1.setDisable(true);
+                            A2.setDisable(true);
+                            A3.setDisable(true);
+                            CA.setDisable(true);
+                            PF.setDisable(true);
+                            UM.setDisable(true);
+                            GT.setDisable(true);
+                            VR.setDisable(false);
+                            break;
+                        default:
+                            A1.setDisable(true);
+                            A2.setDisable(true);
+                            A3.setDisable(true);
+                            CA.setDisable(true);
+                            PF.setDisable(true);
+                            UM.setDisable(true);
+                            GT.setDisable(true);
+                            VR.setDisable(true);
+                    } 
+                }catch(NullPointerException f){
+                System.out.print("IDK at this point");
+            }
+                
+            }catch(IOException e){
+                System.out.print("IO Error");
+            }
+            
     }       
     
+    
+    
     @FXML
-    public void loginButtonClick(ActionEvent event) throws Exception{
+    public void loginButtonClick(ActionEvent event) throws IOException{
         String id = loginID.getText();
         String pass = login.getText();
-        if(logIn.logIn(id, pass, nurse, doctor, staff, ceo) != null){
-            Actor act = (Actor)logIn.logIn(id, pass, nurse, doctor, staff, ceo);
-            System.out.println("");
-            System.out.print(act.getName() + " has loged in");
-            System.out.println("");
-
+        int clearance;
+        if(logIn.logIn(id, pass, nurse, doctor, staff, ceo) != -1){
+            clearance = logIn.logIn(id, pass, nurse, doctor, staff, ceo);
+            StringBuffer buffer = new StringBuffer();
+            try{
+                buffer.append(clearance);
+                FileWriter writer = new FileWriter("src/healthcaresystem/Database/CurrentClearance.txt");
+                writer.append(buffer);
+                writer.flush();
+                writer.close();
+            }catch (FileNotFoundException e) {
+              System.out.println("An error occurred.");
+            }
+            
             Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
             Scene mainSystemScene = new Scene(mainSystemParent);
 
@@ -308,10 +436,13 @@ public class LoginController implements Initializable {
             Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
             window.setX((screenBounds.getWidth() - window.getWidth()) / 2); 
             window.setY((screenBounds.getHeight() - window.getHeight()) / 2);
+            
+            
         }
         else{
             System.out.println("NOPE");
         }
+        
         
     }
     
@@ -567,6 +698,7 @@ public class LoginController implements Initializable {
                 System.out.println("Patient found");
                 pID.setText(String.valueOf(i+1));
                 Amount.setText(String.valueOf(patient.get(i).getPayment().getAmountOwed()));
+                pType.setDisable(false);
             }
             else{
                 System.out.println("Patient not found");
@@ -582,6 +714,7 @@ public class LoginController implements Initializable {
                 fName.setText(patient.get(i).getFname());
                 lName.setText(patient.get(i).getLname());
                 Amount.setText(String.valueOf(patient.get(i).getPayment().getAmountOwed()));
+                pType.setDisable(false);
             }
             else{
                 System.out.println("Patient not found");
@@ -589,7 +722,7 @@ public class LoginController implements Initializable {
         }
     }
     
-     public void findClickTreatment(ActionEvent event) throws IOException{
+    public void findClickTreatment(ActionEvent event) throws IOException{
         String name = fName.getText() + " " + lName.getText();
         for(int i = 0; i < patient.size(); i++){
             if(patient.get(i).getName().equals(name)){
@@ -710,6 +843,7 @@ public class LoginController implements Initializable {
         if(id  > patient.size()){
            StringBuffer buffer = new StringBuffer();
            StringBuffer buffer1 = new StringBuffer();
+           StringBuffer buffer2 = new StringBuffer();
             try {
                 File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
                 Scanner sc1 = new Scanner(file);
@@ -742,7 +876,7 @@ public class LoginController implements Initializable {
                 patient patien = new patient(Fname, Lname, birthday);
                 patien.setChart(new patientChart(patien, add1, add2, email, ins, ph1, ssn));
                 patien.setID(id);
-                paymentInformation paymentInfo = new paymentInformation(id, patien.getName(), 100000, LocalDate.now());
+                paymentInformation paymentInfo = new paymentInformation(id, patien.getName(), 0, LocalDate.now());
                 patien.setPayment(paymentInfo);
                 patient.add(patien);
                 
@@ -759,6 +893,21 @@ public class LoginController implements Initializable {
                 buffer1.append(String.valueOf(id)).append(",").append(0).append(",").append(0).append(",").append(0).append(",").append(0).append(",").append(0).append(", , ");
                 FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientRecord.txt");
                 writer.append(buffer1);
+                writer.flush();
+                writer.close();
+            }catch (FileNotFoundException e) {
+              System.out.println("An error occurred.");
+            }
+            try{
+                File file = new File("src/healthcaresystem/Database/PatientDueRecord.txt");
+                Scanner sc1 = new Scanner(file);
+                while (sc1.hasNextLine()) {
+                    buffer2.append(sc1.nextLine()).append(System.lineSeparator());
+                }
+                sc1.close();
+                buffer2.append(String.valueOf(id)).append(",").append(0).append(",").append(LocalDate.now().getYear()).append(",").append(LocalDate.now().getMonthValue()).append(",").append(LocalDate.now().getDayOfMonth());
+                FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientDueRecord.txt");
+                writer.append(buffer2);
                 writer.flush();
                 writer.close();
             }catch (FileNotFoundException e) {
@@ -1025,6 +1174,88 @@ public class LoginController implements Initializable {
     
     public void checkInClick(ActionEvent event)throws IOException{
         System.out.println("CHECKING IN!");
+        String name = fName.getText() + " " + lName.getText();
+        String bday = "";
+        String docname = doctorDropDown.getValue();
+        for(patient pat : patient){
+            if(pat.getName().equals(name)){
+                bday = pat.getBirthday();
+                if(pat.getPayment() == null){
+                    paymentInformation pay = new paymentInformation(pat.getID(), pat.getName(), (int)Float.parseFloat(total.getText()), LocalDate.now());
+                    pat.setPayment(pay);
+                    System.out.println("patient's total: " + pat.getPayment().getAmountOwed());
+                }
+                else{
+                    pat.getPayment().setAmountOwed(pat.getPayment().getAmountOwed()+ ((int) (Float.parseFloat(total.getText()))));
+                    System.out.println("patient's new total: " + pat.getPayment().getAmountOwed());
+                }
+                
+                StringBuffer buffer1 = new StringBuffer();
+                try {
+                    File file = new File("src/healthcaresystem/Database/PatientDueRecord.txt"); 
+                    Scanner sc1 = new Scanner(file);
+                    while (sc1.hasNextLine()) {
+                        buffer1.append(sc1.nextLine()+System.lineSeparator());
+                     }
+                    sc1.close();
+                    Scanner sc = new Scanner(file);
+                    while (sc.hasNextLine()) {
+                        String line = sc.nextLine();
+                        StringTokenizer tok = new StringTokenizer(line, ",");
+                        if(Integer.parseInt(tok.nextToken()) == pat.getID()){
+                            String ID = pID.getText();
+                            int tot = pat.getPayment().getAmountOwed();
+                            
+                            String newLine = String.valueOf(ID) + "," + tot + "," + LocalDate.now().getYear() + "," + LocalDate.now().getMonthValue() + "," + LocalDate.now().getDayOfMonth();
+                            String all = buffer1.toString().replace(line, newLine);
+                            sc.close();
+                            FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientDueRecord.txt");
+                            writer.append(all);
+                            writer.flush();
+                            break;
+                        }
+                    }
+                  } catch (FileNotFoundException e) {
+                    System.out.println("An error occurred.");
+                  }
+                
+                staff.get(0).checkIn(patient, name, bday, doctor, docname);
+                appointments_today.remove(pat);
+                for(Doctor doc : doctor){
+                    if(doc.getName().equals(docname)){
+                        String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
+                        doc.getSchedule().cancelApp(aTime.getValue(), LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), patient);
+                        doc.addNumberOfPatient();
+                        doc.updateEarned((int)Float.parseFloat(dProfit.getText()));
+                    }
+                }
+               try {
+                StringBuffer buffer = new StringBuffer();
+                File file = new File("src/healthcaresystem/Database/PatientAppointment.txt"); 
+                Scanner sc1 = new Scanner(file);
+                while (sc1.hasNextLine()) {
+                    buffer.append(sc1.nextLine()+ System.lineSeparator());
+                }
+                sc1.close();
+                Scanner sc = new Scanner(file);
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    StringTokenizer tok = new StringTokenizer(line, ",");
+                    if(tok.nextToken().equals(pID.getText())){
+                        String all = buffer.toString().replaceAll(line, "").trim();
+                        sc.close();
+                        FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
+                        writer.append(all);
+                        writer.flush();
+                        break;
+                    }
+                }
+              } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+              }
+            }
+        }
+        
     }
     
     public void checkInUpdate(ActionEvent event)throws IOException{
@@ -1073,6 +1304,160 @@ public class LoginController implements Initializable {
         tax.setText(String.valueOf(subTotal * .0825));
         total.setText(String.valueOf(subTotal + subTotal*.0825));
         check3.selectedProperty().setValue(true);
+        checkCheck(event);
+    }
+    
+    public void checkCardInfoClick(ActionEvent event)throws IOException{
+       String cardDate = "20" + cardExp2.getText() + "-" + cardExp1.getText() + "-01";
+       LocalDate card = LocalDate.parse(cardDate, DateTimeFormatter.ISO_LOCAL_DATE);
+       if(LocalDate.now().compareTo(card) <= 0){
+           bank rand = new bank();
+            if(cardNumber.getText().getBytes().length == 16){
+                if(cardCVV.getText().getBytes().length == 3 || cardCVV.getText().getBytes().length == 4){
+                    if(cardZIP.getText().getBytes().length == 5){
+                        if(cardName.getText().getBytes().length > 3){
+                            if(rand.approval() > 0){
+                                System.out.println("Card info went through");
+                                pButton.setDisable(false);
+                                pCCI.setDisable(true);
+                            }
+                            else{
+                                System.out.println("Card info did not go through");
+                                pButton.setDisable(true);
+                            } 
+                        }
+                        else{
+                            System.out.println("Card Name length is wrong: " + cardName.getText().getBytes().length);
+                            pButton.setDisable(true);
+                        }
+                    }
+                    else{
+                        System.out.println("Card ZIP length is wrong: " + cardZIP.getText().getBytes().length);
+                        pButton.setDisable(true);
+                    }
+                }
+                else{
+                    System.out.println("Card CVV length wrong: " + cardCVV.getText().getBytes().length);
+                    pButton.setDisable(true);
+                }
+            }
+            else{
+                System.out.println("Card number length wrong: " + cardNumber.getText().getBytes().length);
+                pButton.setDisable(true);
+            }
+        }
+        else{
+            System.out.println("Card out of date");
+            pButton.setDisable(true);
+        }
+    }
+    
+    public void typeChange(ActionEvent event)throws IOException{
+        if(pType.getValue().equals("Cash")){
+            cardNumber.setDisable(true);
+            cardExp1.setDisable(true);
+            cardExp2.setDisable(true);
+            cardCVV.setDisable(true);
+            cardName.setDisable(true);
+            cardZIP.setDisable(true);
+            pButton.setDisable(false);
+            pCCI.setDisable(true);
+        }
+        else{
+            cardNumber.setDisable(false);
+            cardExp1.setDisable(false);
+            cardExp2.setDisable(false);
+            cardCVV.setDisable(false);
+            cardName.setDisable(false);
+            cardZIP.setDisable(false);
+            pButton.setDisable(true);
+            pCCI.setDisable(false);
+        }
+        
+    }
+    
+    public void payClick(ActionEvent event)throws IOException{
+        StringBuffer buffer1 = new StringBuffer();
+        try{
+            File file = new File("src/healthcaresystem/Database/PatientPaymentRecord.txt");
+            Scanner sc1 = new Scanner(file);
+            while (sc1.hasNextLine()) {
+                buffer1.append(sc1.nextLine()).append(System.lineSeparator());
+            }
+            sc1.close();
+            buffer1.append(String.valueOf(pID.getText())).append(",").append(Amount.getText()).append(",").append(pType.getValue()).append(",").append(LocalDate.now());
+            FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientPaymentRecord.txt");
+            writer.append(buffer1);
+            writer.flush();
+            writer.close();
+        }catch (FileNotFoundException e) {
+          System.out.println("An error occurred.");
+        }
+        patient.get(Integer.parseInt(pID.getText())-1).getPayment().setAmountOwed(0);
+        StringBuffer buffer = new StringBuffer();
+        try {
+            File file = new File("src/healthcaresystem/Database/PatientDueRecord.txt"); 
+            Scanner sc1 = new Scanner(file);
+            while (sc1.hasNextLine()) {
+                buffer.append(sc1.nextLine()+System.lineSeparator());
+             }
+            sc1.close();
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                StringTokenizer tok = new StringTokenizer(line, ",");
+                if(Integer.parseInt(tok.nextToken()) == Integer.parseInt(pID.getText())){
+                    String ID = pID.getText();
+
+                    String newLine = String.valueOf(ID) + "," + 0 + "," + LocalDate.now().getYear() + "," + LocalDate.now().getMonthValue() + "," + LocalDate.now().getDayOfMonth();
+                    String all = buffer.toString().replace(line, newLine);
+                    sc.close();
+                    FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientDueRecord.txt");
+                    writer.append(all);
+                    writer.flush();
+                    break;
+                }
+            }
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+          }
+        System.out.println("Payment went through!");
+        System.out.println(patient.get(Integer.parseInt(pID.getText())-1).getPayment().getAmountOwed());
+    }
+    
+    public void clearAppointmentsDaily()throws IOException{
+        for(patient pat : appointments_today){
+            appointments_today.remove(pat);
+            for(Doctor doc : doctor){
+                if(doc.getName().equals(pat.getAppointment().getDoctor().getName())){
+                    doc.getSchedule().cancelApp(aTime.getValue(), LocalDate.now(), patient);
+                }
+            }
+            try {
+                StringBuffer buffer = new StringBuffer();
+                File file = new File("src/healthcaresystem/Database/PatientAppointment.txt"); 
+                Scanner sc1 = new Scanner(file);
+                while (sc1.hasNextLine()) {
+                    buffer.append(sc1.nextLine()+ System.lineSeparator());
+                }
+                sc1.close();
+                Scanner sc = new Scanner(file);
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    StringTokenizer tok = new StringTokenizer(line, ",");
+                    if(tok.nextToken().equals(pat.getID())){
+                        String all = buffer.toString().replaceAll(line, "").trim();
+                        sc.close();
+                        FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
+                        writer.append(all);
+                        writer.flush();
+                        break;
+                    }
+                }
+              } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+              }
+        }
     }
     
 }

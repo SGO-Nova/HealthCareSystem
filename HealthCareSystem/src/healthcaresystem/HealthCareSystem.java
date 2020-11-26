@@ -26,12 +26,18 @@ public class HealthCareSystem extends Application {
         
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalDateTime nowTime = LocalDateTime.now();
+            LoginController repo = new LoginController();
             if(((String)LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern))).equals("20:00:00")){
                 System.out.println("CLEARING ALL NO-SHOW APPOINTMENTS");
+                try {
+                    repo.clearAppointmentsDaily();
+                } catch (IOException ex) {
+                    Logger.getLogger(HealthCareSystem.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             if(((String)LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern))).equals("21:00:00")){
                 System.out.println("Making daily report");
-                LoginController repo = new LoginController(); 
+                 
                 try {
                     repo.makeReport();
                 } catch (IOException ex) {

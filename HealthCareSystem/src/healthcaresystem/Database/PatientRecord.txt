@@ -1,2 +1,1 @@
-1,6,2,200,90,90, Feeling ill. Big rash on the back.,Give 50 pill pack of drugs.
-2,6,1,190,90,90, , Eat food
+1,6,2,185,90,100, Feeling great but ugly :(, Get plastic surgery

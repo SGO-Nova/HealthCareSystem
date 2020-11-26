@@ -44,6 +44,10 @@ public class Actor {
 	{
 		return (int)(Math.random()*((999999-100000)-1))+100000;
 	}
+        
+        public int getClearance(){
+            return this.clearance;
+        }
 	
 	public int createID(ArrayList<Doctor> doctor, ArrayList<patient> patient, ArrayList<staff> staff)
 	{

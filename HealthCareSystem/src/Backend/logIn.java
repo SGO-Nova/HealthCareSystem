@@ -3,7 +3,21 @@ package Backend;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class logIn {
-	public static Object logIn(String ID, String pass, ArrayList<nurse> nurse,ArrayList<Doctor> doctor, ArrayList<staff> staff,ArrayList<CEO> ceo)
+        private int clearance;
+        
+        public void login(){
+            this.clearance = 0;
+        }
+        
+        public void setClearance(int clearance){
+            this.clearance = clearance;
+        }
+        
+        public int getClearance(){
+            return this.clearance;
+        }
+        
+	public static int logIn(String ID, String pass, ArrayList<nurse> nurse,ArrayList<Doctor> doctor, ArrayList<staff> staff,ArrayList<CEO> ceo)
 	{
             /*
 		System.out.println("Please enter your ID and password");
@@ -29,13 +43,13 @@ public class logIn {
 				{
 					System.out.println("Welcome back " + nur.name + "!");
 					//in.close();
-					return nur;
+					return 2;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
 					//in.close();
-					return null;
+					return -1;
 				}
 			}
 		}
@@ -47,13 +61,13 @@ public class logIn {
 				{
 					System.out.println("Welcome back " + doc.name + "!");
 					//in.close();
-					return doc;
+					return 3;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
 					//in.close();
-					return null;
+					return -1;
 				}
 			}
 		}
@@ -65,13 +79,13 @@ public class logIn {
 				{
 					System.out.println("Welcome back " + stf.name + "!");
 					//in.close();
-					return stf;
+					return 1;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
 					//in.close();
-					return null;
+					return -1;
 				}
 			}
 		}
@@ -83,19 +97,19 @@ public class logIn {
 				{
 					System.out.println("Welcome back " + CEO.name + "!");
 					//in.close();
-					return CEO;
+					return 4;
 				}
 				else
 				{
 					System.out.println("That password was incorrect");
 					//in.close();
-					return null;
+					return -1;
 				}
 			}
 		}
 		System.out.println("That ID does not match any that are on file.");
 		//in.close();
-		return null;
+		return -1;
 	}
 	
 	public static void logOut()

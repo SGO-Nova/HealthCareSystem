@@ -124,7 +124,7 @@ public class staff extends Actor {
 	
 	
 	
-	public void checkIn(ArrayList<patient> patient,String patName, String birth, ArrayList<Doctor> doctor)
+	public void checkIn(ArrayList<patient> patient,String patName, String birth, ArrayList<Doctor> doctor, String docname)
 	{
 		for(patient pat : patient)
 		{
@@ -134,7 +134,7 @@ public class staff extends Actor {
 				pat.birthday = birth;
 				if(pat.birthday.equals(birth))
 				{
-					pat.patientChart = null;
+					//pat.patientChart = null;
 					if(pat.patientChart != null)
 					{
 						System.out.println("Existing Patient");
@@ -159,7 +159,7 @@ public class staff extends Actor {
 						pat.patientChart = new patientChart();
 					}
 					//take doc's name
-					String docname = "Test Doctor";
+					//String docname = "Test Doctor";
 					for(Doctor doc : doctor)
 					{
 						if(doc.name.equals(docname))
@@ -170,7 +170,7 @@ public class staff extends Actor {
 						}
 					}
 					//need to take input for stuff to put into payment information.
-					pat.paymentInfo.setAmountOwed(10000);
+					//pat.paymentInfo.setAmountOwed(10000);
 					pat.appointment = null;
 				}
 			}
