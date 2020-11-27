@@ -1058,11 +1058,12 @@ public class LoginController implements Initializable {
             StringBuffer buffer = new StringBuffer();
             System.out.println(link);
 
-            writer.append("Doctors:\n");
+            buffer.append("Doctors:\n");
             for(Doctor doc : doctor){
                 String doctor_name = doc.getName();
                 int number_of_paitents = doc.getNumberOfPatients();
                 int amount_earned = doc.getEarned();
+                System.out.println(doc.getNumberOfPatients() + " : " + doc.getEarned());
 
                 String doctorFormat = String.format("\tName: Dr. %s\n\t\tNumber of Patients: %d\n\t\tAmount earned: $%d\n", doctor_name, number_of_paitents, amount_earned);
                 buffer.append(doctorFormat);
