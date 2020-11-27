@@ -80,6 +80,14 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
+                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Find">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -90,7 +98,7 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Find">
+                  <Button layoutX="1250.0" layoutY="43.0" mnemonicParsing="false" onAction="#findIDClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Find">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -98,6 +106,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <TextArea fx:id="aTreatment" layoutX="147.0" layoutY="613.0" prefHeight="189.0" prefWidth="1239.0">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font>
+                  </TextArea>
                   <Button layoutX="1250.0" layoutY="835.0" mnemonicParsing="false" onAction="#updateClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Update">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -146,14 +159,6 @@
                         <Text layoutX="1734.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powerful And Wonderful Group ©" wrappingWidth="185.4700412750244" />
                      </children>
                   </AnchorPane>
-                  <Button layoutX="1250.0" layoutY="43.0" mnemonicParsing="false" onAction="#findIDClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Find">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Text layoutX="67.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Height">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -225,11 +230,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="aTreatment" layoutX="147.0" layoutY="613.0" prefHeight="189.0" prefWidth="1239.0">
-                     <font>
-                        <Font name="SansSerif" size="24.0" />
-                     </font>
-                  </TextArea>
                </children>
             </AnchorPane>
          </center>

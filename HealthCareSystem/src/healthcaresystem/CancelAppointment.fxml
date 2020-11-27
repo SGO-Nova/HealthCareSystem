@@ -93,6 +93,19 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
+                  <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="1131.0" layoutY="833.0" mnemonicParsing="false" onAction="#cancelAppClick" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #FF1010; -fx-border-width: 2px; -fx-border-color: Black;" text="Cancel Appintment">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <TextField fx:id="pAddress1" disable="true" layoutX="148.0" layoutY="124.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -108,11 +121,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClick" prefHeight="53.0" prefWidth="137.0" text="Find">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -194,14 +202,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <Button layoutX="1131.0" layoutY="833.0" mnemonicParsing="false" onAction="#cancelAppClick" prefHeight="55.0" prefWidth="255.0" style="-fx-background-color: #FF1010; -fx-border-width: 2px; -fx-border-color: Black;" text="Cancel Appintment">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <TextArea fx:id="aNotes" disable="true" layoutX="148.0" layoutY="628.0" prefHeight="193.0" prefWidth="1239.0" />
                   <Text layoutX="1465.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REMEMBER to click 'find' after typing in patients name OR ID number to find the patient's appointment information. " textAlignment="JUSTIFY" wrappingWidth="403.3123779296875">
                      <font>

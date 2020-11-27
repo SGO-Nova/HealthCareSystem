@@ -80,17 +80,41 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </Text>
                   <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Find">
+                  <TextField fx:id="pHeight1" layoutX="146.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="pHeight2" layoutX="246.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="pWeight" layoutX="485.0" layoutY="209.0" prefHeight="51.0" prefWidth="90.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="pBP1" layoutX="864.0" layoutY="210.0" prefHeight="51.0" prefWidth="90.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="pBP2" layoutX="864.0" layoutY="271.0" prefHeight="51.0" prefWidth="90.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextArea fx:id="aReason" layoutX="147.0" layoutY="366.0" prefHeight="193.0" prefWidth="1239.0">
+                     <font>
+                        <Font name="SansSerif" size="24.0" />
+                     </font></TextArea>
+                  <Button layoutX="1250.0" layoutY="835.0" mnemonicParsing="false" onAction="#updateClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Update">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -98,7 +122,12 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="1250.0" layoutY="835.0" mnemonicParsing="false" onAction="#updateClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Update">
+                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClickTreatment" prefHeight="53.0" prefWidth="137.0" text="Find">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -112,10 +141,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="aReason" layoutX="147.0" layoutY="366.0" prefHeight="193.0" prefWidth="1239.0">
-                     <font>
-                        <Font name="SansSerif" size="24.0" />
-                     </font></TextArea>
                   <Text layoutX="1486.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REMEMBER to click 'find' after typing in patients name OR ID number to find the patient's information." textAlignment="JUSTIFY" wrappingWidth="403.3123779296875">
                      <font>
                         <Font name="SansSerif" size="24.0" />
@@ -159,21 +184,11 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pHeight1" layoutX="146.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Text layoutX="223.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ft">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pHeight2" layoutX="246.0" layoutY="209.0" prefHeight="51.0" prefWidth="69.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Text layoutX="323.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -184,11 +199,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pWeight" layoutX="485.0" layoutY="209.0" prefHeight="51.0" prefWidth="90.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Text layoutX="578.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="lbs">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -199,16 +209,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pBP1" layoutX="864.0" layoutY="210.0" prefHeight="51.0" prefWidth="90.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="pBP2" layoutX="864.0" layoutY="271.0" prefHeight="51.0" prefWidth="90.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Line endX="-87.99993896484375" endY="6.33331298828125" layoutX="1052.0" layoutY="261.0" startX="-195.33331298828125" startY="6.33331298828125" />
                   <Text layoutX="973.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="mm Hg">
                      <font>

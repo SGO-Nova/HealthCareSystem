@@ -80,16 +80,16 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </Text>
                   <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
+                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
                   <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClickFees" prefHeight="53.0" prefWidth="137.0" text="Find">
                      <font>
                         <Font name="SansSerif" size="25.0" />

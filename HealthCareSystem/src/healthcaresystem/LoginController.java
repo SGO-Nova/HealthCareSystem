@@ -39,7 +39,7 @@ import javafx.util.Duration;
 public class LoginController implements Initializable {
 
     @FXML
-    private Button A1, A2, A3, CA, PF, UM, GT, VR, checkButt, pButton, pCCI, UpButt;
+    private Button A1, A2, A3, CA, PF, UM, GT, VR, checkButt, pButton, pCCI, UpButt, pUpdate, pCreate;
     @FXML
     private CheckBox check1, check2, check3;
     @FXML
@@ -71,7 +71,7 @@ public class LoginController implements Initializable {
     private String[] report;
     private String pattern = "ccc | yyyy-MM-dd | hh:mm:ss a";
     
-
+    private int card_counter = 0;
     
   
     
@@ -332,6 +332,7 @@ public class LoginController implements Initializable {
               System.out.println("An error occurred.");
             }
             
+            popup(event, "Welcome", "Welcome back!", false);
             Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
             Scene mainSystemScene = new Scene(mainSystemParent);
 
@@ -348,6 +349,7 @@ public class LoginController implements Initializable {
         }
         else{
             System.out.println("NOPE");
+            popup(event, "Login", "The login information you have entered is incorrect", false);
         }
         
         
@@ -519,9 +521,24 @@ public class LoginController implements Initializable {
                 pPhone1.setText(patient.get(i).getChart().getPhone1());
                 pBirthday.setText(patient.get(i).getBirthday());
                 pSSN.setText(String.valueOf(patient.get(i).getChart().getSSN()));
+                try{
+                    pUpdate.setDisable(false);
+                    pCreate.setDisable(true);
+                }
+                catch(NullPointerException e){
+                    System.out.println("Not right scene");
+                }
             }
             else{
                 System.out.println("Patient not found");
+                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
+                try{
+                    pUpdate.setDisable(true);
+                    pCreate.setDisable(false);
+                }
+                catch(NullPointerException e){
+                    System.out.println("Not right scene");
+                }
             }
         }
          try{
@@ -569,6 +586,7 @@ public class LoginController implements Initializable {
             }
             else{
                 System.out.println("Patient not found");
+                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
         }
         try{
@@ -609,6 +627,7 @@ public class LoginController implements Initializable {
             }
             else{
                 System.out.println("Patient not found");
+                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
         }
     }
@@ -625,6 +644,7 @@ public class LoginController implements Initializable {
             }
             else{
                 System.out.println("Patient not found");
+                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
         }
     }
@@ -651,6 +671,7 @@ public class LoginController implements Initializable {
             }
             else{
                 System.out.println("Patient not found");
+                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
         }
     }
@@ -678,79 +699,25 @@ public class LoginController implements Initializable {
             }
             else{
                 System.out.println("Patient not found");
+                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
         }
     }
     
     public void generateIDClick(ActionEvent event) throws IOException{
         pID.setText(String.valueOf(patient.size()+1));
+        pUpdate.setDisable(true);
+        pCreate.setDisable(false);
+        
     }
     
     public void updateClick(ActionEvent event) throws IOException{
-        int id = Integer.parseInt(pID.getText());
-        StringBuffer buffer = new StringBuffer();
-        try {
-            File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
-            Scanner sc1 = new Scanner(file);
-            while (sc1.hasNextLine()) {
-                buffer.append(sc1.nextLine()+System.lineSeparator());
-             }
-            sc1.close();
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                StringTokenizer tok = new StringTokenizer(line, ",");
-                if(Integer.parseInt(tok.nextToken()) == id){
-                    String Fname = fName.getText();
-                    String Lname = lName.getText();
-                    String birthday = pBirthday.getText();
-                    String add1 = pAddress1.getText();
-                    String add2 = pAddress2.getText();
-                    if(add2.equals("")){
-                        add2 = " ";
-                    }
-                    String email = pEmail.getText();
-                    String ins = pInsurance.getText();
-                    if(ins.equals("")){
-                        ins = "None";
-                    }
-                    String ph1 = pPhone1.getText();
-                    String ssn = pSSN.getText();
-                    String newLine = String.valueOf(id) + "," + Fname + "," + Lname + "," + birthday + "," + add1 + "," + add2 + "," + email + "," + ins + "," + ph1 + "," + ssn;
-                    String all = buffer.toString().replace(line, newLine);
-                    sc.close();
-                    FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientInformation.txt");
-                    writer.append(all);
-                    writer.flush();
-                    break;
-                }
-            }
-          } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-          }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
-        alert.setTitle("Patient Information Update");
-        alert.setHeaderText("Patient Information has been updated!");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK){
-            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
-            Scene mainSystemScene = new Scene(mainSystemParent);
-
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-            window.setScene(mainSystemScene);
-            window.show();
+        if(fName.getText().equals("") || lName.getText().equals("") || pBirthday.getText().equals("") || pAddress1.getText().equals("") || pEmail.getText().equals("") || pPhone1.getText().equals("")){
+            popup(event, "Information", "Please fill out all information before", false);
         }
-        //ADD POP UP TO LET KNOW Patient info was updated
-    }
-    
-    public void createClick(ActionEvent event) throws IOException{
-        int id = Integer.parseInt(pID.getText());
-        if(id  > patient.size()){
-           StringBuffer buffer = new StringBuffer();
-           StringBuffer buffer1 = new StringBuffer();
-           StringBuffer buffer2 = new StringBuffer();
+        else{
+            int id = Integer.parseInt(pID.getText());
+            StringBuffer buffer = new StringBuffer();
             try {
                 File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
                 Scanner sc1 = new Scanner(file);
@@ -758,218 +725,265 @@ public class LoginController implements Initializable {
                     buffer.append(sc1.nextLine()+System.lineSeparator());
                  }
                 sc1.close();
-                String Fname = fName.getText();
-                String Lname = lName.getText();
-                String birthday = pBirthday.getText();
-                String add1 = pAddress1.getText();
-                String add2 = pAddress2.getText();
-                if(add2.equals("")){
-                    add2 = " ";
+                Scanner sc = new Scanner(file);
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    StringTokenizer tok = new StringTokenizer(line, ",");
+                    if(Integer.parseInt(tok.nextToken()) == id){
+                        String Fname = fName.getText();
+                        String Lname = lName.getText();
+                        String birthday = pBirthday.getText();
+                        String add1 = pAddress1.getText();
+                        String add2 = pAddress2.getText();
+                        if(add2.equals("")){
+                            add2 = " ";
+                        }
+                        String email = pEmail.getText();
+                        String ins = pInsurance.getText();
+                        if(ins.equals("")){
+                            ins = "None";
+                        }
+                        String ph1 = pPhone1.getText();
+                        String ssn = pSSN.getText();
+                        String newLine = String.valueOf(id) + "," + Fname + "," + Lname + "," + birthday + "," + add1 + "," + add2 + "," + email + "," + ins + "," + ph1 + "," + ssn;
+                        String all = buffer.toString().replace(line, newLine);
+                        sc.close();
+                        FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientInformation.txt");
+                        writer.append(all);
+                        writer.flush();
+                        break;
+                    }
                 }
-                String email = pEmail.getText();
-                String ins = pInsurance.getText();
-                if(ins.equals("")){
-                    ins = "None";
-                }
-                String ph1 = pPhone1.getText();
-                String ssn = pSSN.getText();
-                String newLine = String.valueOf(id) + "," + Fname + "," + Lname + "," + birthday + "," + add1 + "," + add2 + "," + email + "," + ins + "," + ph1 + "," + ssn;
-
-                buffer.append(newLine);
-                FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientInformation.txt");
-                writer.append(buffer);
-                writer.flush();
-                writer.close();
-                patient patien = new patient(Fname, Lname, birthday);
-                patien.setChart(new patientChart(patien, add1, add2, email, ins, ph1, ssn));
-                patien.setID(id);
-                paymentInformation paymentInfo = new paymentInformation(id, patien.getName(), 0, LocalDate.now());
-                patien.setPayment(paymentInfo);
-                patient.add(patien);
-                
-            } catch (FileNotFoundException e) {
-              System.out.println("An error occurred.");
+              } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+              }
+            popup(event, "Patient Information", "The patient's information has been updated!", false);
+            //ADD POP UP TO LET KNOW Patient info was updated
+        }
+    }
+    
+    public void createClick(ActionEvent event) throws IOException{
+        if(fName.getText().equals("") || lName.getText().equals("") || pBirthday.getText().equals("") || pAddress1.getText().equals("") || pEmail.getText().equals("") || pPhone1.getText().equals("")){
+            popup(event, "Information", "Please fill out all information before", false);
+        }
+        else{
+           int id = Integer.parseInt(pID.getText());
+            if(fName.getText().equals("") || lName.getText().equals("") || pBirthday.getText().equals("") || pAddress1.getText().equals("") || pEmail.getText().equals("") || pPhone1.getText().equals("") || aDateY.getText().equals("") || aDateM.getText().equals("") || aDateD.getText().equals("") || doctorDropDown.getValue().equals("") || aNotes.getText().equals("")){
+                popup(event, "Information", "Please fill out all information before creating the appointment", false);
             }
+            else{
+                 String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
+                 int time = ((aTime.getValue()) / 100);
+                 if(time > 12){
+                     time %= 13;
+                     time += 1;
+                 }
+                 //System.out.println(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE) + ", " +  time + ", " + aNotes.getText() + ", " + doctorDropDown.getValue() + ", " + String.valueOf(patient.get(id-1).getName()));
+                 try{
+                     staff.get(0).scheduleApp(doctor, patient, LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), time, aNotes.getText(), doctorDropDown.getValue(), String.valueOf(patient.get(id-1).getName()));
+                     try{
+                         StringBuffer buffer = new StringBuffer();
+                         File file = new File("src/healthcaresystem/Database/PatientAppointment.txt"); 
+                         Scanner sc1 = new Scanner(file);
+                         while (sc1.hasNextLine()) {
+                             buffer.append(sc1.nextLine()).append(System.lineSeparator());
+                         }
+                         sc1.close();
+                         System.out.println(buffer.toString());
+                         String newLine = String.valueOf(id) + "," + aDateY.getText() + "," + aDateM.getText() + "," + aDateD.getText() + "," + aTime.getValue() + "," + doctorDropDown.getValue() + "," + aNotes.getText();
+                         buffer.append(newLine).append(System.lineSeparator());
+                         System.out.println(buffer.toString());
+                         FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
+                         writer.append(buffer);
+                         writer.flush();
+                         writer.close();
+                       } catch (FileNotFoundException e) {
+                         System.out.println("An error occurred.");
+                       }
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                     alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+                     alert.setTitle("Patient Creation");
+                     alert.setHeaderText("Patient Appointment has been created!");
+                     Optional<ButtonType> result = alert.showAndWait();
+                     if(result.get() == ButtonType.OK){
+                         Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
+                         Scene mainSystemScene = new Scene(mainSystemParent);
+
+                         Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+                         window.setScene(mainSystemScene);
+                         window.show();
+                     }
+                 }catch(DateTimeParseException d){
+                     Alert alert = new Alert(Alert.AlertType.ERROR);
+                     alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+                     alert.setTitle("ERROR");
+                     alert.setHeaderText("Make sure the date in put in correctly! \n yyyy-mm-dd");
+                     Optional<ButtonType> result = alert.showAndWait();
+                 }
+            }
+        }
+    }
+    
+    public void patCreate(ActionEvent event) throws IOException{
+        int id = Integer.parseInt(pID.getText());
+        if(id  > patient.size()){
+            StringBuffer buffer = new StringBuffer();
+            StringBuffer buffer1 = new StringBuffer();
+            StringBuffer buffer2 = new StringBuffer();
+             try {
+                 File file = new File("src/healthcaresystem/Database/PatientInformation.txt"); 
+                 Scanner sc1 = new Scanner(file);
+                 while (sc1.hasNextLine()) {
+                     buffer.append(sc1.nextLine()+System.lineSeparator());
+                  }
+                 sc1.close();
+                 String Fname = fName.getText();
+                 String Lname = lName.getText();
+                 String birthday = pBirthday.getText();
+                 String add1 = pAddress1.getText();
+                 String add2 = pAddress2.getText();
+                 if(add2.equals("")){
+                     add2 = " ";
+                 }
+                 String email = pEmail.getText();
+                 String ins = pInsurance.getText();
+                 if(ins.equals("")){
+                     ins = "None";
+                 }
+                 String ph1 = pPhone1.getText();
+                 String ssn = pSSN.getText();
+                 String newLine = String.valueOf(id) + "," + Fname + "," + Lname + "," + birthday + "," + add1 + "," + add2 + "," + email + "," + ins + "," + ph1 + "," + ssn;
+
+                 buffer.append(newLine);
+                 FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientInformation.txt");
+                 writer.append(buffer);
+                 writer.flush();
+                 writer.close();
+                 patient patien = new patient(Fname, Lname, birthday);
+                 patien.setChart(new patientChart(patien, add1, add2, email, ins, ph1, ssn));
+                 patien.setID(id);
+                 paymentInformation paymentInfo = new paymentInformation(id, patien.getName(), 0, LocalDate.now());
+                 patien.setPayment(paymentInfo);
+                 patient.add(patien);
+
+             } catch (FileNotFoundException e) {
+               System.out.println("An error occurred.");
+             }
+             try{
+                 File file = new File("src/healthcaresystem/Database/PatientRecord.txt");
+                 Scanner sc1 = new Scanner(file);
+                 while (sc1.hasNextLine()) {
+                     buffer1.append(sc1.nextLine()).append(System.lineSeparator());
+                 }
+                 sc1.close();
+                 buffer1.append(String.valueOf(id)).append(",").append(0).append(",").append(0).append(",").append(0).append(",").append(0).append(",").append(0).append(", , ");
+                 FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientRecord.txt");
+                 writer.append(buffer1);
+                 writer.flush();
+                 writer.close();
+             }catch (FileNotFoundException e) {
+               System.out.println("An error occurred.");
+             }
+             try{
+                 File file = new File("src/healthcaresystem/Database/PatientDueRecord.txt");
+                 Scanner sc1 = new Scanner(file);
+                 while (sc1.hasNextLine()) {
+                     buffer2.append(sc1.nextLine()).append(System.lineSeparator());
+                 }
+                 sc1.close();
+                 buffer2.append(String.valueOf(id)).append(",").append(0).append(",").append(LocalDate.now().getYear()).append(",").append(LocalDate.now().getMonthValue()).append(",").append(LocalDate.now().getDayOfMonth());
+                 FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientDueRecord.txt");
+                 writer.append(buffer2);
+                 writer.flush();
+                 writer.close();
+             }catch (FileNotFoundException e) {
+               System.out.println("An error occurred.");
+             }
+             popup(event, "New Patient", "The new patient has been added to the database", false);
+         }
+    }
+    
+    public void updateClickTreatment(ActionEvent event) throws IOException{
+        if(fName.getText().equals("") || lName.getText().equals("") || pHeight1.getText().equals("") || pHeight2.getText().equals("") || pBP1.getText().equals("") || pBP2.getText().equals("") || pWeight.getText().equals("") || aReason.getText().equals("")){
+            popup(event, "Information", "Please fill out all information", false);
+        }
+        {
+           int ID = Integer.parseInt(pID.getText());
+            patient pat = patient.get(ID-1);
+            pat.getRecord().setHeight(Integer.parseInt(pHeight1.getText()), Integer.parseInt(pHeight2.getText()));
+            pat.getRecord().setBloodPreasure(Integer.parseInt(pBP1.getText()), Integer.parseInt(pBP2.getText()));
+            pat.getRecord().setWeight(Integer.parseInt(pWeight.getText()));
+            pat.getRecord().setReason(aReason.getText());
+            pat.getRecord().setTreatment(aTreatment.getText());
+            System.out.println("Treatment Updated!");
+            int id = Integer.parseInt(pID.getText());
+            StringBuffer buffer = new StringBuffer();
+            try {
+                File file = new File("src/healthcaresystem/Database/PatientRecord.txt"); 
+                Scanner sc1 = new Scanner(file);
+                while (sc1.hasNextLine()) {
+                    buffer.append(sc1.nextLine()+System.lineSeparator());
+                 }
+                sc1.close();
+                Scanner sc = new Scanner(file);
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    StringTokenizer tok = new StringTokenizer(line, ",");
+                    if(Integer.parseInt(tok.nextToken()) == id){
+                        String newLine = String.valueOf(id) + "," + pat.getRecord().getHeight1() + "," + pat.getRecord().getHeight2() + "," + pat.getRecord().getWeight() + "," + pat.getRecord().getBP1() + "," + pat.getRecord().getBP2() + "," + pat.getRecord().getReason() + "," + pat.getRecord().getTreatment();
+                        String all = buffer.toString().replace(line, newLine);
+                        sc.close();
+                        FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientRecord.txt");
+                        writer.append(all);
+                        writer.flush();
+                        break;
+                    }
+                }
+              } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
+              }
+            popup(event, "Patient Information", "The patient's information has been updated!", true); 
+        }
+    }
+ 
+    public void updateClickAppointment(ActionEvent event) throws IOException{
+        if(fName.getText().equals("") || lName.getText().equals("") || pBirthday.getText().equals("") || pAddress1.getText().equals("") || pEmail.getText().equals("") || pPhone1.getText().equals("") || aDateY.getText().equals("") || aDateM.getText().equals("") || aDateD.getText().equals("") || doctorDropDown.getValue().equals("") || aNotes.getText().equals("")){
+            popup(event, "Information", "Please fill out all information before updating the appointment", false);
+        }
+        else{
             try{
-                File file = new File("src/healthcaresystem/Database/PatientRecord.txt");
+                StringBuffer buffer1 = new StringBuffer();
+                File file = new File("src/healthcaresystem/Database/PatientAppointment.txt");
                 Scanner sc1 = new Scanner(file);
                 while (sc1.hasNextLine()) {
                     buffer1.append(sc1.nextLine()).append(System.lineSeparator());
                 }
                 sc1.close();
-                buffer1.append(String.valueOf(id)).append(",").append(0).append(",").append(0).append(",").append(0).append(",").append(0).append(",").append(0).append(", , ");
-                FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientRecord.txt");
-                writer.append(buffer1);
-                writer.flush();
-                writer.close();
-            }catch (FileNotFoundException e) {
-              System.out.println("An error occurred.");
-            }
-            try{
-                File file = new File("src/healthcaresystem/Database/PatientDueRecord.txt");
-                Scanner sc1 = new Scanner(file);
-                while (sc1.hasNextLine()) {
-                    buffer2.append(sc1.nextLine()).append(System.lineSeparator());
-                }
-                sc1.close();
-                buffer2.append(String.valueOf(id)).append(",").append(0).append(",").append(LocalDate.now().getYear()).append(",").append(LocalDate.now().getMonthValue()).append(",").append(LocalDate.now().getDayOfMonth());
-                FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientDueRecord.txt");
-                writer.append(buffer2);
-                writer.flush();
-                writer.close();
-            }catch (FileNotFoundException e) {
-              System.out.println("An error occurred.");
-            }
-        }
-        String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
-        int time = ((aTime.getValue()) / 100);
-        if(time > 12){
-            time %= 13;
-            time += 1;
-        }
-        //System.out.println(LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE) + ", " +  time + ", " + aNotes.getText() + ", " + doctorDropDown.getValue() + ", " + String.valueOf(patient.get(id-1).getName()));
-        try{
-            staff.get(0).scheduleApp(doctor, patient, LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), time, aNotes.getText(), doctorDropDown.getValue(), String.valueOf(patient.get(id-1).getName()));
-            try{
-                StringBuffer buffer = new StringBuffer();
-                File file = new File("src/healthcaresystem/Database/PatientAppointment.txt"); 
-                Scanner sc1 = new Scanner(file);
-                while (sc1.hasNextLine()) {
-                    buffer.append(sc1.nextLine()).append(System.lineSeparator());
-                }
-                sc1.close();
-                System.out.println(buffer.toString());
-                String newLine = String.valueOf(id) + "," + aDateY.getText() + "," + aDateM.getText() + "," + aDateD.getText() + "," + aTime.getValue() + "," + doctorDropDown.getValue() + "," + aNotes.getText();
-                buffer.append(newLine).append(System.lineSeparator());
-                System.out.println(buffer.toString());
-                FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
-                writer.append(buffer);
-                writer.flush();
-                writer.close();
-              } catch (FileNotFoundException e) {
-                System.out.println("An error occurred.");
-              }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.getButtonTypes().removeAll(ButtonType.CANCEL);
-            alert.setTitle("Patient Creation");
-            alert.setHeaderText("Patient Appointment has been created!");
-            Optional<ButtonType> result = alert.showAndWait();
-            if(result.get() == ButtonType.OK){
-                Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
-                Scene mainSystemScene = new Scene(mainSystemParent);
-
-                Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-                window.setScene(mainSystemScene);
-                window.show();
-            }
-        }catch(DateTimeParseException d){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.getButtonTypes().removeAll(ButtonType.CANCEL);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("Make sure the date in put in correctly! \n yyyy-mm-dd");
-            Optional<ButtonType> result = alert.showAndWait();
-        }
-        
-    //ADD POP UP TO LET KNOW APPOINTMENT WAS CREATED
-    }
-    
-    public void updateClickTreatment(ActionEvent event) throws IOException{
-        int ID = Integer.parseInt(pID.getText());
-        patient pat = patient.get(ID-1);
-        pat.getRecord().setHeight(Integer.parseInt(pHeight1.getText()), Integer.parseInt(pHeight2.getText()));
-        pat.getRecord().setBloodPreasure(Integer.parseInt(pBP1.getText()), Integer.parseInt(pBP2.getText()));
-        pat.getRecord().setWeight(Integer.parseInt(pWeight.getText()));
-        pat.getRecord().setReason(aReason.getText());
-        pat.getRecord().setTreatment(aTreatment.getText());
-        System.out.println("Treatment Updated!");
-        int id = Integer.parseInt(pID.getText());
-        StringBuffer buffer = new StringBuffer();
-        try {
-            File file = new File("src/healthcaresystem/Database/PatientRecord.txt"); 
-            Scanner sc1 = new Scanner(file);
-            while (sc1.hasNextLine()) {
-                buffer.append(sc1.nextLine()+System.lineSeparator());
-             }
-            sc1.close();
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                StringTokenizer tok = new StringTokenizer(line, ",");
-                if(Integer.parseInt(tok.nextToken()) == id){
-                    String newLine = String.valueOf(id) + "," + pat.getRecord().getHeight1() + "," + pat.getRecord().getHeight2() + "," + pat.getRecord().getWeight() + "," + pat.getRecord().getBP1() + "," + pat.getRecord().getBP2() + "," + pat.getRecord().getReason() + "," + pat.getRecord().getTreatment();
-                    String all = buffer.toString().replace(line, newLine);
+                Scanner sc = new Scanner(file);
+                while (sc.hasNextLine()) {
+                    String line = sc.nextLine();
+                    String newLine = pID.getText() + "," + aDateY.getText() + "," + aDateM.getText() + "," + aDateD.getText() + "," + aTime.getValue() + "," + doctorDropDown.getValue() + "," + aNotes.getText();
+                    String replace = buffer1.toString().replace(line, newLine);
                     sc.close();
-                    FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientRecord.txt");
-                    writer.append(all);
+                    FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
+                    writer.append(replace);
                     writer.flush();
+                    String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
+                    int time = ((aTime.getValue()) / 100);
+                    if(time > 12){
+                        time %= 13;
+                        time += 1;
+                    }
+                    staff.get(0).changeApp(patient, patient.get(Integer.parseInt(pID.getText())-1).getName(), doctor, LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), time, aNotes.getText());
+                    System.out.println("Appointment Updated!");
                     break;
                 }
+
+            }catch (FileNotFoundException e) {
+              System.out.println("An error occurred.");
             }
-          } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-          }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
-        alert.setTitle("Patient Information Update");
-        alert.setHeaderText("Patient Information has been updated!");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK){
-            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
-            Scene mainSystemScene = new Scene(mainSystemParent);
-
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-            window.setScene(mainSystemScene);
-            window.show();
-        }
-    }
- 
-    public void updateClickAppointment(ActionEvent event) throws IOException{
-        try{
-            StringBuffer buffer1 = new StringBuffer();
-            File file = new File("src/healthcaresystem/Database/PatientAppointment.txt");
-            Scanner sc1 = new Scanner(file);
-            while (sc1.hasNextLine()) {
-                buffer1.append(sc1.nextLine()).append(System.lineSeparator());
-            }
-            sc1.close();
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                String newLine = pID.getText() + "," + aDateY.getText() + "," + aDateM.getText() + "," + aDateD.getText() + "," + aTime.getValue() + "," + doctorDropDown.getValue() + "," + aNotes.getText();
-                String replace = buffer1.toString().replace(line, newLine);
-                sc.close();
-                FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
-                writer.append(replace);
-                writer.flush();
-                String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
-                int time = ((aTime.getValue()) / 100);
-                if(time > 12){
-                    time %= 13;
-                    time += 1;
-                }
-                staff.get(0).changeApp(patient, patient.get(Integer.parseInt(pID.getText())-1).getName(), doctor, LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), time, aNotes.getText());
-                System.out.println("Appointment Updated!");
-                break;
-            }
-            
-        }catch (FileNotFoundException e) {
-          System.out.println("An error occurred.");
-        }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
-        alert.setTitle("Patient Appointment Update");
-        alert.setHeaderText("Patient Appointment has been updated!");
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK){
-            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
-            Scene mainSystemScene = new Scene(mainSystemParent);
-
-            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-            window.setScene(mainSystemScene);
-            window.show();
+            popup(event, "Patient Information", "The patient's information has been updated!", true);
         }
     }
     
@@ -1163,7 +1177,7 @@ public class LoginController implements Initializable {
               }
             }
         }
-        
+        popup(event, "Patient Check-in", "The patienthas been checked in!", true);
     }
     
     public void checkInUpdate(ActionEvent event)throws IOException{
@@ -1226,36 +1240,51 @@ public class LoginController implements Initializable {
                         if(cardName.getText().getBytes().length > 3){
                             if(rand.approval() > 0){
                                 System.out.println("Card info went through");
+                                card_counter=0;
                                 pButton.setDisable(false);
                                 pCCI.setDisable(true);
                             }
                             else{
                                 System.out.println("Card info did not go through");
                                 pButton.setDisable(true);
+                                if(card_counter == 2){
+                                    popup(event, "Card Information", "The card information could not be processed, please pay with cash", false);
+                                    pCCI.setDisable(true);
+                                    pType.setValue("Cash");
+                                    pType.setDisable(true);
+                                }
+                                else{
+                                    card_counter++;
+                                }
                             } 
                         }
                         else{
                             System.out.println("Card Name length is wrong: " + cardName.getText().getBytes().length);
+                            popup(event, "Card Name Length", "The length of the name on the card is too short.", false);
                             pButton.setDisable(true);
                         }
                     }
                     else{
                         System.out.println("Card ZIP length is wrong: " + cardZIP.getText().getBytes().length);
+                        popup(event, "Card ZIP Length", "The length of the ZIP on the card is wrong.", false);
                         pButton.setDisable(true);
                     }
                 }
                 else{
                     System.out.println("Card CVV length wrong: " + cardCVV.getText().getBytes().length);
+                    popup(event, "Card CVV Length", "The length of the CVV on the card is wrong.", false);
                     pButton.setDisable(true);
                 }
             }
             else{
                 System.out.println("Card number length wrong: " + cardNumber.getText().getBytes().length);
+                popup(event, "Card number Length", "The length of the number on the card is wrong.", false);
                 pButton.setDisable(true);
             }
         }
         else{
             System.out.println("Card out of date");
+            popup(event, "Card Date", "The card is out of date.", false);
             pButton.setDisable(true);
         }
     }
@@ -1330,6 +1359,7 @@ public class LoginController implements Initializable {
             System.out.println("An error occurred.");
           }
         System.out.println("Payment went through!");
+        popup(event, "Patient Payment", "The patient's payment has gone through!", true);
         System.out.println(patient.get(Integer.parseInt(pID.getText())-1).getPayment().getAmountOwed());
     }
     
@@ -1369,35 +1399,57 @@ public class LoginController implements Initializable {
     }
     
     public void checkAvailButton(ActionEvent event)throws IOException{
-        patient pat = patient.get(Integer.parseInt(pID.getText())-1);
-        int time = aTime.getValue();
-        time /= 100;
-        if(time > 12)
-            time -=12;
-        String date1 = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
-        LocalDate date = LocalDate.parse(date1, DateTimeFormatter.ISO_LOCAL_DATE);
-        //System.out.println("Doctors current schedule: ");
-        for(Doctor doc : doctor){
-            if(doc.getName().equals(doctorDropDown.getValue())){
-                doc.getSchedule().printSchedule(date);
-                System.out.println(date + " : " + time);
-                if(doc.getSchedule().checkSchedule(time,date)){
-                    System.out.println("Can make appointment");
-                    UpButt.setDisable(false);
+        if(fName.getText().equals("") || lName.getText().equals("") || pID.getText().equals("") || pBirthday.getText().equals("") || pAddress1.getText().equals("") || pEmail.getText().equals("") || pPhone1.getText().equals("") || aDateY.getText().equals("") || aDateM.getText().equals("") || aDateD.getText().equals("") || doctorDropDown.getValue().equals("") || aNotes.getText().equals("")){
+            popup(event, "Information", "Please fill out all information.", false);
+        }
+        else{
+            patient pat = patient.get(Integer.parseInt(pID.getText())-1);
+            int time = aTime.getValue();
+            time /= 100;
+            if(time > 12)
+                time -=12;
+            String date1 = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
+            LocalDate date = LocalDate.parse(date1, DateTimeFormatter.ISO_LOCAL_DATE);
+            //System.out.println("Doctors current schedule: ");
+            for(Doctor doc : doctor){
+                if(doc.getName().equals(doctorDropDown.getValue())){
+                    doc.getSchedule().printSchedule(date);
+                    System.out.println(date + " : " + time);
+                    if(doc.getSchedule().checkSchedule(time,date)){
+                        System.out.println("Can make appointment");
+                        UpButt.setDisable(false);
+                    }
+                    else{
+                        System.out.println("Cannot make appointment");
+                        popup(event, "Appointment", "The doctor is not available at that time and date, please select another time.", false);
+                        UpButt.setDisable(true);
+                    }
                 }
-                else{
-                    System.out.println("Cannot make appointment");
-                    UpButt.setDisable(true);
-                }
-            }
-        }       
-        //take input for new date/time
-        //LocalDate date = LocalDate.now();
-        //LocalDate date = LocalDate.of(year,month,day);
-        //int time = 9;
-        //int time = input of some kind.
-        
-
+            }       
+            //take input for new date/time
+            //LocalDate date = LocalDate.now();
+            //LocalDate date = LocalDate.of(year,month,day);
+            //int time = 9;
+            //int time = input of some kind.
+        }
 }
+    
+    public void popup(ActionEvent event, String Title, String Text, boolean returnHome)throws IOException{
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getButtonTypes().removeAll(ButtonType.CANCEL);
+        alert.setTitle(Title);
+        alert.setHeaderText(Text);
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.get() == ButtonType.OK && returnHome == true){
+            Parent mainSystemParent = FXMLLoader.load(getClass().getResource("MainSystem.fxml"));
+            Scene mainSystemScene = new Scene(mainSystemParent);
+
+            Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            window.setScene(mainSystemScene);
+            window.show();
+        }
+    }
     
 }

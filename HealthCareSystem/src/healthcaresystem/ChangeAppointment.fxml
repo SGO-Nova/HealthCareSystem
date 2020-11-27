@@ -93,6 +93,27 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
+                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClick" prefHeight="53.0" prefWidth="137.0" text="Find">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="1245.0" layoutY="43.0" mnemonicParsing="false" onAction="#findIDClick" prefHeight="53.0" prefWidth="137.0" text="Find">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                   <TextField fx:id="pAddress1" disable="true" layoutX="148.0" layoutY="124.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -103,17 +124,50 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="pID" layoutX="1066.0" layoutY="43.0" prefHeight="51.0" prefWidth="159.0">
+                  <TextField fx:id="pEmail" disable="true" layoutX="149.0" layoutY="247.0" prefHeight="51.0" prefWidth="603.0">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
-                  <Button layoutX="783.0" layoutY="42.0" mnemonicParsing="false" onAction="#findClick" prefHeight="53.0" prefWidth="137.0" text="Find">
+                  <TextField fx:id="pInsurance" disable="true" layoutX="148.0" layoutY="319.0" prefHeight="51.0" prefWidth="603.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="pPhone1" disable="true" layoutX="1068.0" layoutY="115.0" prefHeight="51.0" prefWidth="316.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="pBirthday" disable="true" layoutX="1070.0" layoutY="178.0" prefHeight="51.0" prefWidth="313.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="pSSN" disable="true" layoutX="1068.0" layoutY="247.0" prefHeight="51.0" prefWidth="313.0">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="doctorDropDown" layoutX="147.0" layoutY="470.0" prefHeight="48.0" prefWidth="343.0" promptText="Doctor" />
+                  <TextField fx:id="aDateY" layoutX="148.0" layoutY="546.0" prefHeight="54.0" prefWidth="105.0" promptText="Year">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="aDateM" layoutX="266.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Month">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="aDateD" layoutX="384.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Day">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </TextField>
+                  <ComboBox fx:id="aTime" layoutX="620.0" layoutY="546.0" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
+                  <TextArea fx:id="aNotes" layoutX="148.0" layoutY="628.0" prefHeight="193.0" prefWidth="1239.0" />
+                  <Button layoutX="1017.0" layoutY="833.0" mnemonicParsing="false" onAction="#checkAvailButton" prefHeight="54.0" prefWidth="227.0" text="Check Availability">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -121,46 +175,39 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Button fx:id="UpButt" disable="true" layoutX="1249.0" layoutY="833.0" mnemonicParsing="false" onAction="#updateClickAppointment" prefHeight="53.0" prefWidth="137.0" text="Update">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Text layoutX="1026.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                  </Text>
                   <Text layoutX="992.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pPhone1" disable="true" layoutX="1068.0" layoutY="115.0" prefHeight="51.0" prefWidth="316.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Text layoutX="77.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pEmail" disable="true" layoutX="149.0" layoutY="247.0" prefHeight="51.0" prefWidth="603.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Text layoutX="904.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Social Security">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pSSN" disable="true" layoutX="1068.0" layoutY="247.0" prefHeight="51.0" prefWidth="313.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Text layoutX="26.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Insurance">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pInsurance" disable="true" layoutX="148.0" layoutY="319.0" prefHeight="51.0" prefWidth="603.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cecece" height="877.0" layoutX="1455.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="423.0" />
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cecece" height="11.0" layoutX="26.0" layoutY="418.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1357.0" />
                   <Text layoutX="62.0" layoutY="503.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor">
@@ -173,12 +220,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="aDateY" layoutX="148.0" layoutY="546.0" prefHeight="54.0" prefWidth="105.0" promptText="Year">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
-                  <ComboBox fx:id="aTime" layoutX="620.0" layoutY="546.0" prefHeight="51.0" prefWidth="196.0" promptText="Time" />
                   <Text layoutX="540.0" layoutY="582.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Time">
                      <font>
                         <Font name="SansSerif" size="25.0" />
@@ -189,15 +230,6 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextArea fx:id="aNotes" layoutX="148.0" layoutY="628.0" prefHeight="193.0" prefWidth="1239.0" />
-                  <Button fx:id="UpButt" disable="true" layoutX="1249.0" layoutY="833.0" mnemonicParsing="false" onAction="#updateClickAppointment" prefHeight="53.0" prefWidth="137.0" text="Update">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                   <Text layoutX="1465.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REMEMBER to click 'find' after typing in patients name OR ID number to find the patient's appointment information. " textAlignment="JUSTIFY" wrappingWidth="403.3123779296875">
                      <font>
                         <Font name="SansSerif" size="24.0" />
@@ -223,43 +255,11 @@
                         <Font name="SansSerif" size="24.0" />
                      </font>
                   </Text>
-                  <Button layoutX="1245.0" layoutY="43.0" mnemonicParsing="false" onAction="#findIDClick" prefHeight="53.0" prefWidth="137.0" text="Find">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <ComboBox fx:id="doctorDropDown" layoutX="147.0" layoutY="470.0" prefHeight="48.0" prefWidth="343.0" promptText="Doctor" />
                   <Text layoutX="972.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birthday">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="pBirthday" disable="true" layoutX="1070.0" layoutY="178.0" prefHeight="51.0" prefWidth="313.0">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="aDateM" layoutX="266.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Month">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="aDateD" layoutX="384.0" layoutY="545.0" prefHeight="54.0" prefWidth="105.0" promptText="Day">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                  </TextField>
-                  <Button layoutX="1017.0" layoutY="833.0" mnemonicParsing="false" onAction="#checkAvailButton" prefHeight="54.0" prefWidth="227.0" text="Check Availability">
-                     <font>
-                        <Font name="SansSerif" size="25.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
                </children>
             </AnchorPane>
          </center>
