@@ -1,0 +1,9 @@
+Doctors:
+	Name: Dr. Billy Jones
+		Number of Patients: 3
+		Amount earned: $444
+	Name: Dr. Christina Robinson
+		Number of Patients: 9
+		Amount earned: $10000
+
+Reported at: Fri | 2020-11-27 | 12:39:30 PM

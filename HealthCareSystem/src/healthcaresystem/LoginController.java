@@ -751,6 +751,7 @@ public class LoginController implements Initializable {
                         FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientInformation.txt");
                         writer.append(all);
                         writer.flush();
+                        writer.close();
                         break;
                     }
                 }
@@ -937,6 +938,7 @@ public class LoginController implements Initializable {
                         FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientRecord.txt");
                         writer.append(all);
                         writer.flush();
+                        writer.close();
                         break;
                     }
                 }
@@ -969,6 +971,7 @@ public class LoginController implements Initializable {
                     FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
                     writer.append(replace);
                     writer.flush();
+                    writer.close();
                     String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
                     int time = ((aTime.getValue()) / 100);
                     if(time > 12){
@@ -1070,26 +1073,94 @@ public class LoginController implements Initializable {
             link = link.concat(".txt");
             FileWriter writer = new FileWriter(link);
             StringBuffer buffer = new StringBuffer();
+
             System.out.println(link);
 
             buffer.append("Doctors:\n");
-            for(Doctor doc : doctor){
-                String doctor_name = doc.getName();
-                int number_of_paitents = doc.getNumberOfPatients();
-                int amount_earned = doc.getEarned();
-                System.out.println(doc.getNumberOfPatients() + " : " + doc.getEarned());
+            try {
+                File file = new File("src/healthcaresystem/Database/LoginInformation.txt"); 
+                Scanner sc1 = new Scanner(file);
+                while (sc1.hasNextLine()) {
+                    StringTokenizer tok = new StringTokenizer(sc1.nextLine(), ",");
 
-                String doctorFormat = String.format("\tName: Dr. %s\n\t\tNumber of Patients: %d\n\t\tAmount earned: $%d\n", doctor_name, number_of_paitents, amount_earned);
-                buffer.append(doctorFormat);
-                doc.resetPaitentsAndEarned();
+                    int clear = Integer.parseInt(tok.nextToken());
+                    int ID = Integer.parseInt(tok.nextToken());
+                    String pass = tok.nextToken();
+                    String name = tok.nextToken();
+
+                    switch(clear){
+                        case 1: staff sta = new staff(name, pass);
+                                sta.setID(ID);
+                                staff.add(sta);
+                                break;
+                        case 2: nurse nur = new nurse(name, pass);
+                                nur.setID(ID);
+                                nurse.add(nur);
+                                break;
+                        case 3: Doctor doc = new Doctor(name, pass);
+                                doc.setID(ID);
+                                doctor.add(doc);
+                                break;
+                        case 4: CEO ce = new CEO(name, pass);
+                                ce.setID(ID);
+                                ceo.add(ce);
+                                break;
+                  }
+                }
+                sc1.close();
+            } catch (FileNotFoundException e) {
+              System.out.println("An error occurred.");
+            }
+            
+            try {
+                File file = new File("src/healthcaresystem/Database/DoctorInfo.txt"); 
+                Scanner sc = new Scanner(file);
+                for(Doctor doc : doctor){
+                    int id = doc.getID();
+                    String line = sc.nextLine();
+                    StringTokenizer tok = new StringTokenizer(line, ",");
+                    if(Integer.parseInt(tok.nextToken()) == id){
+                        int pats = Integer.parseInt(tok.nextToken());
+                        int earned = Integer.parseInt(tok.nextToken());
+                        doc.setNumberOfPatient(pats);
+                        doc.updateEarned(earned);
+                        
+                    }
+                    String doctor_name = doc.getName();
+                    int number_of_paitents = doc.getNumberOfPatients();
+                    int amount_earned = doc.getEarned();
+                    System.out.println(doc.getNumberOfPatients() + " : " + doc.getEarned());
+
+                    String doctorFormat = String.format("\tName: Dr. %s\n\t\tNumber of Patients: %d\n\t\tAmount earned: $%d\n", doctor_name, number_of_paitents, amount_earned);
+                    buffer.append(doctorFormat);
+                    doc.resetPaitentsAndEarned();
+                } 
+                sc.close();
+            }catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
             }
             buffer.append("\nReported at: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern)));
             writer.append(buffer);
             writer.flush();
+            writer.close();
         }catch(FileNotFoundException e){
             System.out.println("No can do");
         }
         
+        String all = "";
+        for(Doctor doc : doctor){
+            int id = doc.getID();
+            all += id;
+            all += ",0,0\n";
+        }
+        try {
+            FileWriter writer = new FileWriter("src/healthcaresystem/Database/DoctorInfo.txt");
+            writer.append(all);
+            writer.flush();
+            writer.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+        }
         
         
     }
@@ -1108,7 +1179,9 @@ public class LoginController implements Initializable {
                     System.out.println("patient's total: " + pat.getPayment().getAmountOwed());
                 }
                 else{
-                    pat.getPayment().setAmountOwed(pat.getPayment().getAmountOwed()+ ((int) (Float.parseFloat(total.getText()))));
+                    int owe = pat.getPayment().getAmountOwed();
+                    owe += (int)(Float.parseFloat(total.getText()));
+                    pat.getPayment().setAmountOwed(owe);
                     System.out.println("patient's new total: " + pat.getPayment().getAmountOwed());
                 }
                 
@@ -1134,6 +1207,7 @@ public class LoginController implements Initializable {
                             FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientDueRecord.txt");
                             writer.append(all);
                             writer.flush();
+                            writer.close();
                             break;
                         }
                     }
@@ -1143,12 +1217,41 @@ public class LoginController implements Initializable {
                 
                 staff.get(0).checkIn(patient, name, bday, doctor, docname);
                 appointments_today.remove(pat);
+                StringBuffer buffer3 = new StringBuffer();
                 for(Doctor doc : doctor){
                     if(doc.getName().equals(docname)){
+                        int id = doc.getID();
                         String date = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
                         doc.getSchedule().cancelApp(aTime.getValue(), LocalDate.parse(date, DateTimeFormatter.ISO_LOCAL_DATE), patient);
-                        doc.addNumberOfPatient();
-                        doc.updateEarned((int)Float.parseFloat(dProfit.getText()));
+                        try {
+                            File file = new File("src/healthcaresystem/Database/DoctorInfo.txt"); 
+                            Scanner sc1 = new Scanner(file);
+                            while (sc1.hasNextLine()) {
+                                buffer3.append(sc1.nextLine()+System.lineSeparator());
+                            }
+                            sc1.close();
+                            Scanner sc = new Scanner(file);
+                            while (sc.hasNextLine()) {
+                                String line = sc.nextLine();
+                                StringTokenizer tok = new StringTokenizer(line, ",");
+                                if(Integer.parseInt(tok.nextToken()) == id){
+                                    
+                                    int pats = Integer.parseInt(tok.nextToken()) + 1;
+                                    int earned = Integer.parseInt(tok.nextToken()) + ((int)Float.parseFloat(dProfit.getText()));
+
+                                    String newLine = String.valueOf(id) + "," + pats + "," + earned;
+                                    String all = buffer3.toString().replace(line, newLine);
+                                    sc.close();
+                                    FileWriter writer = new FileWriter("src/healthcaresystem/Database/DoctorInfo.txt");
+                                    writer.append(all);
+                                    writer.flush();
+                                    writer.close();
+                                    break;
+                                }
+                            }
+                        } catch (FileNotFoundException e) {
+                            System.out.println("An error occurred.");
+                        }
                     }
                 }
                try {
@@ -1169,6 +1272,7 @@ public class LoginController implements Initializable {
                         FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
                         writer.append(all);
                         writer.flush();
+                        writer.close();
                         break;
                     }
                 }
@@ -1352,6 +1456,7 @@ public class LoginController implements Initializable {
                     FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientDueRecord.txt");
                     writer.append(all);
                     writer.flush();
+                    writer.close();
                     break;
                 }
             }
@@ -1389,6 +1494,7 @@ public class LoginController implements Initializable {
                         FileWriter writer = new FileWriter("src/healthcaresystem/Database/PatientAppointment.txt");
                         writer.append(all);
                         writer.flush();
+                        writer.close();
                         break;
                     }
                 }

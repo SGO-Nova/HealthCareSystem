@@ -47,6 +47,10 @@ public class Doctor extends Actor{
             this.numberOfPatients += 1;
         }
         
+        public void setNumberOfPatient(int i){
+            this.numberOfPatients = i;
+        }
+        
         public void resetPaitentsAndEarned(){
             this.numberOfPatients = 0;
             this.earned = 0;
