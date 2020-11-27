@@ -191,7 +191,7 @@
                      </font>
                   </Text>
                   <TextArea fx:id="aNotes" layoutX="149.0" layoutY="630.0" prefHeight="193.0" prefWidth="1239.0" />
-                  <Button layoutX="1245.0" layoutY="823.0" mnemonicParsing="false" onAction="#createClick" prefHeight="53.0" prefWidth="137.0" text="Create">
+                  <Button fx:id="UpButt" disable="true" layoutX="1245.0" layoutY="823.0" mnemonicParsing="false" onAction="#createClick" prefHeight="53.0" prefWidth="137.0" text="Create">
                      <font>
                         <Font name="SansSerif" size="25.0" />
                      </font>
@@ -258,6 +258,14 @@
                         <Font name="SansSerif" size="25.0" />
                      </font>
                   </TextField>
+                  <Button layoutX="1003.0" layoutY="823.0" mnemonicParsing="false" onAction="#checkAvailButton" prefHeight="54.0" prefWidth="233.0" text="Check Availability">
+                     <font>
+                        <Font name="SansSerif" size="25.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
          </center>

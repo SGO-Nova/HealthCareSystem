@@ -29,9 +29,6 @@ import java.util.StringTokenizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -42,107 +39,17 @@ import javafx.util.Duration;
 public class LoginController implements Initializable {
 
     @FXML
-    private Button A1;
+    private Button A1, A2, A3, CA, PF, UM, GT, VR, checkButt, pButton, pCCI, UpButt;
     @FXML
-    private Button A2;
-    @FXML
-    private Button A3;
-    @FXML
-    private Button CA;
-    @FXML
-    private Button PF;
-    @FXML
-    private Button UM;
-    @FXML
-    private Button GT;
-    @FXML
-    private Button VR;
-    @FXML
-    private Button checkButt;
-    @FXML
-    private Button pButton;
-    @FXML
-    private Button pCCI;
-    @FXML
-    private CheckBox check1;
-    @FXML
-    private CheckBox check2;
-    @FXML
-    private CheckBox check3;
-    @FXML
-    private TextField loginID;
+    private CheckBox check1, check2, check3;
     @FXML
     private PasswordField login;
     @FXML
-    private Label time;
+    private Label time, Amount;
     @FXML
-    private Label Amount;
+    private TextField loginID, fName, lName, pAddress1, pAddress2, pEmail, pInsurance, pID, pPhone1, pBirthday, pSSN, aDateY, aDateM, aDateD, pHeight1, pHeight2, pWeight, pBP1, pBP2, pTotal, dProfit, tFee, tax, total, cardNumber, cardExp1, cardExp2, cardCVV, cardName, cardZIP;
     @FXML
-    private TextField fName;
-    @FXML
-    private TextField lName;
-    @FXML
-    private TextField pAddress1;
-    @FXML
-    private TextField pAddress2;
-    @FXML
-    private TextField pEmail;
-    @FXML
-    private TextField pInsurance;
-    @FXML
-    private TextField pID;
-    @FXML
-    private TextField pPhone1;
-    @FXML
-    private TextField pBirthday;
-    @FXML
-    private TextField pSSN;
-    @FXML
-    private TextField aDateY;
-    @FXML
-    private TextField aDateM;
-    @FXML
-    private TextField aDateD;
-    @FXML
-    private TextField pHeight1;
-    @FXML
-    private TextField pHeight2;
-    @FXML
-    private TextField pWeight;
-    @FXML
-    private TextField pBP1;
-    @FXML
-    private TextField pBP2;
-    @FXML
-    private TextField pTotal;
-    @FXML
-    private TextField dProfit;
-    @FXML
-    private TextField tFee;
-    @FXML
-    private TextField tax;
-    @FXML
-    private TextField total;
-    @FXML
-    private TextField cardNumber;
-    @FXML
-    private TextField cardExp1;
-    @FXML
-    private TextField cardExp2;
-    @FXML
-    private TextField cardCVV;
-    @FXML
-    private TextField cardName;
-    @FXML
-    private TextField cardZIP;
-    @FXML
-    private TextArea aReason;
-    @FXML
-    private TextArea aTreatment;
-    @FXML
-    private TextArea aNotes;
-    @FXML
-    private TextArea reportArea;
+    private TextArea aReason, aTreatment, aNotes, reportArea;
     @FXML
     private ComboBox<String> doctorDropDown = new ComboBox<String>();
     @FXML
@@ -1459,5 +1366,37 @@ public class LoginController implements Initializable {
               }
         }
     }
+    
+    public void checkAvailButton(ActionEvent event)throws IOException{
+        patient pat = patient.get(Integer.parseInt(pID.getText())-1);
+        int time = aTime.getValue();
+        time /= 100;
+        if(time > 12)
+            time -=12;
+        String date1 = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
+        LocalDate date = LocalDate.parse(date1, DateTimeFormatter.ISO_LOCAL_DATE);
+        //System.out.println("Doctors current schedule: ");
+        for(Doctor doc : doctor){
+            if(doc.getName().equals(doctorDropDown.getValue())){
+                doc.getSchedule().printSchedule(date);
+                System.out.println(date + " : " + time);
+                if(doc.getSchedule().checkSchedule(time,date)){
+                    System.out.println("Can make appointment");
+                    UpButt.setDisable(false);
+                }
+                else{
+                    System.out.println("Cannot make appointment");
+                    UpButt.setDisable(true);
+                }
+            }
+        }       
+        //take input for new date/time
+        //LocalDate date = LocalDate.now();
+        //LocalDate date = LocalDate.of(year,month,day);
+        //int time = 9;
+        //int time = input of some kind.
+        
+
+}
     
 }
