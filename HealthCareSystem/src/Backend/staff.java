@@ -19,11 +19,11 @@ public class staff extends Actor {
 	}
 	
 	public void scheduleApp(ArrayList<Doctor> doctor, ArrayList<patient> patient, LocalDate date, int time, String notes, String docName, String patName)
-	{
+	{       
 		int appSet = 0;
 		for(Doctor doc : doctor)
 		{
-			if(docName == doc.name)
+			if(docName == doc.getName())
 			{
 				
 				//take input of date for appointment
@@ -33,7 +33,7 @@ public class staff extends Actor {
 				//staff enters patients name, date and time for their appointment
 				//String patName = "test";//edit this so that it can take an input
 				//int time = 10;//edit this so that it can take an input
-				if(doc.schedule.checkSchedule(time,date))
+				if(doc.getSchedule().checkSchedule(time,date))//This isn't right
 				{
 					//doc.schedule.updateSchedule(time,date);
 					appointment app = new appointment(doc,date,time, notes);

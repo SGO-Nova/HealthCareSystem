@@ -177,12 +177,26 @@ public class LoginController implements Initializable {
                 String dName = tok.nextToken();
                 String Notes = tok.nextToken();
                 LocalDate date = LocalDate.parse(DateY + "-" + DateM + "-" + DateD, DateTimeFormatter.ISO_LOCAL_DATE);
+                System.out.println(time + ":" + date);
+                time = time / 100;
+                 if(time > 12){
+                     time %= 13;
+                     time += 1;
+                 }
                 for(int i = 0; i < doctor.size(); i++){
                     if(doctor.get(i).getName().equals(dName)){
+                        System.out.println(doctor.get(i).getName() + ": ");
+                        doctor.get(i).getSchedule().printSchedule(date);
                         Doctor doc = doctor.get(i);
                         patient.get(ID-1).setAppointment(new appointment(doc, date, time, Notes));
+                        staff.get(0).scheduleApp(doctor, patient, date, time, Notes, doc.getName(), patient.get(ID-1).getName());
                     }
                 }
+                for(Doctor doc : doctor){
+                    System.out.println(doc.getName() + " : ");
+                    doc.getSchedule().printSchedule(date);
+                }
+                System.out.println();
             }
             sc.close();
           } catch (FileNotFoundException e) {
@@ -506,8 +520,9 @@ public class LoginController implements Initializable {
     }
     
     private int pat;
+    private boolean found;
     public void findClick(ActionEvent event) throws IOException{
-        
+        found = false;
         String name = fName.getText() + " " + lName.getText();
         for(int i = 0; i < patient.size(); i++){
             if(patient.get(i).getName().equals(name)){
@@ -528,10 +543,11 @@ public class LoginController implements Initializable {
                 catch(NullPointerException e){
                     System.out.println("Not right scene");
                 }
+                found = true;
+                break;
             }
             else{
                 System.out.println("Patient not found");
-                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
                 try{
                     pUpdate.setDisable(true);
                     pCreate.setDisable(false);
@@ -540,6 +556,9 @@ public class LoginController implements Initializable {
                     System.out.println("Not right scene");
                 }
             }
+        }
+        if(found == false){
+            popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
         }
          try{
             StringBuffer buffer1 = new StringBuffer();
@@ -569,6 +588,7 @@ public class LoginController implements Initializable {
     }
     
     public void findIDClick(ActionEvent event) throws IOException{
+        found = false;
         int id = Integer.parseInt(pID.getText());
         for(int i = 0; i < patient.size(); i++){
             if(i+1 == id){
@@ -582,12 +602,15 @@ public class LoginController implements Initializable {
                 pPhone1.setText(patient.get(i).getChart().getPhone1());
                 pBirthday.setText(patient.get(i).getBirthday());
                 pSSN.setText(String.valueOf(patient.get(i).getChart().getSSN()));
-                
+                found = true;
+                break;
             }
             else{
                 System.out.println("Patient not found");
-                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
+        }
+        if(found == false){
+            popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
         }
         try{
             StringBuffer buffer1 = new StringBuffer();
@@ -617,6 +640,7 @@ public class LoginController implements Initializable {
     }
     
     public void findClickFees(ActionEvent event) throws IOException{
+        found = false;
         String name = fName.getText() + " " + lName.getText();
         for(int i = 0; i < patient.size(); i++){
             if(patient.get(i).getName().equals(name)){
@@ -624,15 +648,20 @@ public class LoginController implements Initializable {
                 pID.setText(String.valueOf(i+1));
                 Amount.setText(String.valueOf(patient.get(i).getPayment().getAmountOwed()));
                 pType.setDisable(false);
+                found = true;
+                break;
             }
             else{
                 System.out.println("Patient not found");
-                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
+        }
+        if(found == false){
+            popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
         }
     }
     
     public void findIDClickFees(ActionEvent event) throws IOException{
+        found = false;
         int id = Integer.parseInt(pID.getText());
         for(int i = 0; i < patient.size(); i++){
             if(i+1 == id){
@@ -641,15 +670,20 @@ public class LoginController implements Initializable {
                 lName.setText(patient.get(i).getLname());
                 Amount.setText(String.valueOf(patient.get(i).getPayment().getAmountOwed()));
                 pType.setDisable(false);
+                found = true;
+                break;
             }
             else{
                 System.out.println("Patient not found");
-                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
+        }
+        if(found == false){
+            popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
         }
     }
     
     public void findClickTreatment(ActionEvent event) throws IOException{
+        found = false;
         String name = fName.getText() + " " + lName.getText();
         for(int i = 0; i < patient.size(); i++){
             if(patient.get(i).getName().equals(name)){
@@ -668,15 +702,20 @@ public class LoginController implements Initializable {
                 pBP2.setText(String.valueOf(patient.get(i).getRecord().getBP2()));
                 aReason.setText(String.valueOf(patient.get(i).getRecord().getReason()));
                 aTreatment.setText(String.valueOf(patient.get(i).getRecord().getTreatment()));
+                found = true;
+                break;
             }
             else{
                 System.out.println("Patient not found");
-                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
+        }
+        if(found == false){
+            popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
         }
     }
     
     public void findIDClickTreatment(ActionEvent event) throws IOException{
+        found = false;
         int id = Integer.parseInt(pID.getText());
         for(int i = 0; i < patient.size(); i++){
             if(i+1 == id){
@@ -696,11 +735,15 @@ public class LoginController implements Initializable {
                 pBP2.setText(String.valueOf(patient.get(i).getRecord().getBP2()));
                 aReason.setText(String.valueOf(patient.get(i).getRecord().getReason()));
                 aTreatment.setText(String.valueOf(patient.get(i).getRecord().getTreatment()));
+                found = true;
+                break;
             }
             else{
                 System.out.println("Patient not found");
-                popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
             }
+        }
+        if(found == false){
+            popup(event, "Patient", "The patient you are trying to find, could not be found.", false);
         }
     }
     
@@ -1281,7 +1324,7 @@ public class LoginController implements Initializable {
               }
             }
         }
-        popup(event, "Patient Check-in", "The patienthas been checked in!", true);
+        popup(event, "Patient Check-in", "The patient has been checked in!", true);
     }
     
     public void checkInUpdate(ActionEvent event)throws IOException{
@@ -1509,6 +1552,7 @@ public class LoginController implements Initializable {
             popup(event, "Information", "Please fill out all information.", false);
         }
         else{
+            
             patient pat = patient.get(Integer.parseInt(pID.getText())-1);
             int time = aTime.getValue();
             time /= 100;
@@ -1516,6 +1560,11 @@ public class LoginController implements Initializable {
                 time -=12;
             String date1 = aDateY.getText() + "-" + aDateM.getText() + "-" + aDateD.getText();
             LocalDate date = LocalDate.parse(date1, DateTimeFormatter.ISO_LOCAL_DATE);
+            for(Doctor doc : doctor){
+                System.out.println(doc.getName() + " : ");
+                doc.getSchedule().printSchedule(date);
+            }
+            System.out.println();
             //System.out.println("Doctors current schedule: ");
             for(Doctor doc : doctor){
                 if(doc.getName().equals(doctorDropDown.getValue())){
