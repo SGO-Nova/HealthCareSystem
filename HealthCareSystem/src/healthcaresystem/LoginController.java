@@ -1342,9 +1342,6 @@ public class LoginController implements Initializable {
                 aDateM.setText(dateM);
                 aDateD.setText(dateD);
                 int time = pat.getAppointment().getTime();
-                if(time < 800){
-                    time += 1200;
-                }
                 aTime.setValue(time);
                 aNotes.setText(pat.getAppointment().getNotes());
             }

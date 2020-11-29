@@ -1,2 +1,0 @@
-1,Jose,Travino,01/01/1999,123 Apple Seed Rd., ,J.Travino@gmail.com,None,806-801-9990,123121234
-2,Bobby,Garcia,12/12/1999,123 Banana Rd., ,B.Garcia@gmail.com,None,1231231234,123121234

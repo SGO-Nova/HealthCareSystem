@@ -35,7 +35,7 @@ public class HealthCareSystem extends Application {
                     Logger.getLogger(HealthCareSystem.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if(((String)LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern))).equals("21:00:30")){
+            if(((String)LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern))).equals("21:00:00")){
                 System.out.println("Making daily report");
                  
                 try {
